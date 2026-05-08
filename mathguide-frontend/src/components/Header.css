@@ -1,0 +1,147 @@
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 48px;
+  background: #1e3a5f;
+  color: white;
+  flex-shrink: 0;
+}
+
+.header-brand {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.header-nav {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-link {
+  padding: 6px 16px;
+  border-radius: 6px;
+  color: #93c5fd;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.nav-link.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-weight: 600;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Developer menu */
+.dev-menu {
+  position: relative;
+}
+
+.dev-trigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: #93c5fd;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s, color 0.15s;
+}
+.dev-trigger:hover,
+.dev-trigger.open {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.dev-arrow {
+  font-size: 10px;
+  transition: transform 0.15s;
+}
+.dev-trigger.open .dev-arrow {
+  transform: rotate(180deg);
+}
+
+.dev-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 200px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18), 0 4px 12px rgba(0,0,0,0.08);
+  z-index: 200;
+  overflow: hidden;
+  padding: 4px;
+}
+
+.dev-menu-item {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  background: transparent;
+  color: #374151;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: background 0.1s;
+}
+
+.dev-menu-item:hover {
+  background: #f3f4f6;
+}
+
+.dev-dropdown-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 4px 0;
+}
+
+.dev-trigger.admin-active {
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.dev-trigger.admin-active:hover,
+.dev-trigger.admin-active.open {
+  background: rgba(251, 191, 36, 0.12);
+  color: #fbbf24;
+}
+
+.logout-btn {
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fca5a5;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.logout-btn:hover {
+  background: rgba(239, 68, 68, 0.3);
+  color: white;
+}

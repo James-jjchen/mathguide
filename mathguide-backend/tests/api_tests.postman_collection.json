@@ -1,0 +1,254 @@
+{
+  "info": {
+    "name": "MathGuide API Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "获取所有知识点",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/nodes",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "nodes"]
+        }
+      }
+    },
+    {
+      "name": "获取单个知识点",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/node/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "node", "1"]
+        }
+      }
+    },
+    {
+      "name": "获取所有章节",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/chapters",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "chapters"]
+        }
+      }
+    },
+    {
+      "name": "初始化用户-选择章节",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": \"student_001\",\n  \"chapter_ids\": [1]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/init_user",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "init_user"]
+        }
+      }
+    },
+    {
+      "name": "数学问答-无知识限制",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"什么是勾股定理？\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/ask",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "ask"]
+        }
+      }
+    },
+    {
+      "name": "数学问答-带知识边界",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"如何理解函数的变化趋势？\",\n  \"learned_ids\": [1, 2, 3, 6]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/ask",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "ask"]
+        }
+      }
+    },
+    {
+      "name": "数学问答-自动更新掌握度",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"极限的ε-δ定义中ε可以任意小吗？\",\n  \"user_id\": \"student_001\",\n  \"learned_ids\": [1, 2, 3, 6]\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/ask",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "ask"]
+        }
+      }
+    },
+    {
+      "name": "查看用户掌握度",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/mastery?user_id=student_001",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "mastery"],
+          "query": [
+            {
+              "key": "user_id",
+              "value": "student_001"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "主动诊断-更新掌握度",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": \"student_001\",\n  \"node_id\": 2,\n  \"student_answer\": \"极限是当自变量无限接近某个值时，函数值趋近于一个确定的数值\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/diagnose",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "diagnose"]
+        }
+      }
+    },
+    {
+      "name": "学习推荐-自动模式(优先复习)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": \"student_001\",\n  \"strategy\": \"auto\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/recommend",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "recommend"]
+        }
+      }
+    },
+    {
+      "name": "学习推荐-强制复习薄弱点",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": \"student_001\",\n  \"strategy\": \"review\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/recommend",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "recommend"]
+        }
+      }
+    },
+    {
+      "name": "学习推荐-强制学习新知识",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"user_id\": \"student_001\",\n  \"strategy\": \"next\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/recommend",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["api", "recommend"]
+        }
+      }
+    }
+  ]
+}

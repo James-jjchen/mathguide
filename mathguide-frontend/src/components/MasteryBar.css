@@ -1,0 +1,53 @@
+.mastery-bar-container {
+  margin-bottom: 10px;
+}
+
+.mastery-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 3px;
+  color: #374151;
+}
+
+.mastery-pct {
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.mastery-track {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.mastery-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+.mastery-fill.low { background: #ef4444; }
+.mastery-fill.medium { background: #f59e0b; }
+.mastery-fill.high { background: #10b981; }
+
+/* Compact variant */
+.mastery-compact {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+  font-size: 12px;
+}
+
+.mastery-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mastery-dot.low { background: #ef4444; }
+.mastery-dot.medium { background: #f59e0b; }
+.mastery-dot.high { background: #10b981; }

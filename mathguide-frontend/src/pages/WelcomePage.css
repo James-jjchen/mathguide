@@ -1,0 +1,178 @@
+/* ===== page ===== */
+.wp {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
+  padding: 24px;
+}
+
+/* ===== card ===== */
+.wp-card {
+  background: #fff; border-radius: 16px; padding: 36px 40px;
+  max-width: 420px; width: 100%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+}
+.wp-card.wp-wide { max-width: 620px; }
+
+.wp-title { font-size: 30px; font-weight: 800; color: #1e3a5f; text-align: center; margin: 0 0 4px; }
+.wp-sub   { font-size: 15px; color: #3b82f6; text-align: center; margin: 0 0 14px; font-weight: 500; }
+
+/* ===== step dots ===== */
+.wp-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 18px; }
+.wp-dot  { width: 10px; height: 10px; border-radius: 50%; background: #d1d5db; }
+.wp-dot.on   { background: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.2); }
+.wp-dot.done { background: #86efac; }
+
+/* ===== form ===== */
+.wp-form { }
+
+.wp-desc  { font-size: 13px; color: #6b7280; line-height: 1.6; text-align: center; margin: 0 0 20px; }
+.wp-label { font-size: 13px; font-weight: 600; color: #374151; display: block; margin: 12px 0 4px; }
+.wp-input {
+  width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 8px;
+  font-size: 14px; font-family: inherit; outline: none; box-sizing: border-box;
+}
+.wp-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59,130,246,0.15); }
+
+/* ===== experience ===== */
+.wp-exp-options { display: flex; flex-direction: column; gap: 8px; }
+.wp-exp-card {
+  display: block; text-align: left; padding: 14px 16px; background: #f9fafb;
+  border: 2px solid #e5e7eb; border-radius: 10px; cursor: pointer;
+  font-family: inherit; transition: border-color .15s, background .15s;
+}
+.wp-exp-card:hover { background: #eff6ff; }
+.wp-exp-card.sel  { border-color: #3b82f6; background: #eff6ff; }
+.wp-exp-label { display: block; font-size: 15px; font-weight: 600; color: #1f2937; margin-bottom: 2px; }
+.wp-exp-desc  { display: block; font-size: 13px; color: #6b7280; }
+
+/* ===== buttons ===== */
+.wp-btn {
+  width: 100%; margin-top: 18px; padding: 12px; background: #3b82f6; color: #fff;
+  border: none; border-radius: 8px; font-size: 16px; font-weight: 600;
+  cursor: pointer; font-family: inherit; transition: background .15s;
+}
+.wp-btn:hover:not(:disabled) { background: #2563eb; }
+.wp-btn:disabled { background: #93c5fd; cursor: not-allowed; }
+
+.wp-btn-back {
+  padding: 12px 20px; background: #f3f4f6; color: #374151;
+  border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; font-weight: 500;
+  cursor: pointer; font-family: inherit;
+}
+.wp-btn-back:hover:not(:disabled) { background: #e5e7eb; }
+.wp-btn-back:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.wp-btn-skip {
+  padding: 12px 20px; background: #ecfdf5; color: #059669;
+  border: 1px solid #a7f3d0; border-radius: 8px; font-size: 14px; font-weight: 600;
+  cursor: pointer; font-family: inherit;
+}
+.wp-btn-skip:hover:not(:disabled) { background: #d1fae5; }
+.wp-btn-skip:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.wp-actions { display: flex; gap: 10px; margin-top: 18px; }
+.wp-actions .wp-btn,
+.wp-actions .wp-btn-back,
+.wp-actions .wp-btn-skip { flex: 1; width: auto; margin-top: 0; }
+
+/* ===== survey bar ===== */
+.wp-survey-hint { font-size: 13px; color: #6b7280; text-align: center; margin: 0 0 12px; line-height: 1.5; }
+.wp-survey-bar {
+  font-size: 13px; color: #374151; font-weight: 500;
+  padding: 10px 14px; background: #f0f9ff; border-radius: 8px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 12px;
+}
+.wp-survey-legend { font-weight: 400; font-size: 12px; color: #6b7280; display: flex; align-items: center; gap: 10px; }
+.wp-ldot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 3px; }
+.wp-ldot.hi { background: #16a34a; }
+.wp-ldot.mi { background: #f59e0b; }
+.wp-ldot.lo { background: #d1d5db; }
+
+/* ===== chapter list ===== */
+.wp-ch-list {
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.wp-ch {
+  border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;
+}
+
+.wp-ch-head {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px; background: #f9fafb; cursor: pointer; user-select: none;
+}
+.wp-ch-head:hover { background: #f3f4f6; }
+.wp-ch-arrow { font-size: 12px; color: #9ca3af; width: 14px; flex-shrink: 0; }
+.wp-ch-name  { font-size: 14px; font-weight: 600; color: #1f2937; }
+.wp-ch-spacer { flex: 1; }
+
+.wp-ch-tag { font-size: 11px; padding: 1px 6px; border-radius: 10px; font-weight: 500; }
+.wp-ch-tag.hi { background: #dcfce7; color: #15803d; }
+.wp-ch-tag.mi { background: #fef3c7; color: #b45309; }
+
+.wp-ch-batch {
+  font-size: 11px; padding: 3px 10px; background: #fff; border: 1px solid #d1d5db;
+  border-radius: 4px; cursor: pointer; color: #6b7280; font-family: inherit;
+}
+.wp-ch-batch:hover { background: #eff6ff; border-color: #3b82f6; color: #3b82f6; }
+
+/* ===== chapter body ===== */
+.wp-ch-body { border-top: 1px solid #e5e7eb; }
+
+.wp-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 14px; border-bottom: 1px solid #f3f4f6;
+}
+.wp-row:last-child { border-bottom: none; }
+.wp-row-name { font-size: 13px; color: #374151; flex: 1; min-width: 0; }
+
+.wp-row-toggle { display: inline-flex; flex-shrink: 0; border: 1px solid #d1d5db; border-radius: 6px; overflow: hidden; }
+
+.wp-cf-btn {
+  font-size: 11px; padding: 4px 10px; border: none; background: #fff;
+  cursor: pointer; color: #9ca3af; font-family: inherit; white-space: nowrap;
+  border-right: 1px solid #e5e7eb; transition: background .1s, color .1s;
+}
+.wp-cf-btn:last-child { border-right: none; }
+.wp-cf-btn:hover { background: #f9fafb; }
+
+.wp-cf-btn.cf-low.on  { background: #f3f4f6; color: #6b7280; font-weight: 500; }
+.wp-cf-btn.cf-mid.on  { background: #fef3c7; color: #b45309; font-weight: 500; }
+.wp-cf-btn.cf-high.on { background: #dcfce7; color: #15803d; font-weight: 500; }
+
+/* ===== quiz ===== */
+.wp-quiz-summary { font-size: 14px; color: #374151; line-height: 1.6; padding: 16px; background: #f9fafb; border-radius: 8px; margin-bottom: 8px; }
+.wp-quiz-summary p { margin: 0 0 8px; }
+.wp-quiz-summary p:last-child { margin-bottom: 0; }
+.wp-quiz-note { font-size: 13px; color: #6b7280; }
+
+.wp-quiz-loading { text-align: center; padding: 32px 0; color: #6b7280; font-size: 14px; }
+
+.wp-quiz-card { padding: 16px; background: #f9fafb; border-radius: 10px; border: 1px solid #e5e7eb; margin-bottom: 12px; }
+.wp-quiz-num  { font-size: 12px; color: #3b82f6; font-weight: 600; margin: 0 0 8px; }
+.wp-quiz-text { font-size: 14px; color: #1f2937; line-height: 1.6; margin: 0 0 8px; }
+.wp-quiz-hint { font-size: 12px; color: #9ca3af; font-style: italic; margin: 0 0 8px; }
+.wp-quiz-input {
+  width: 100%; padding: 10px 12px; border: 1px solid #d1d5db; border-radius: 6px;
+  font-size: 13px; font-family: inherit; outline: none; resize: vertical; box-sizing: border-box;
+}
+.wp-quiz-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59,130,246,0.15); }
+
+.wp-quiz-results { padding: 12px; background: #f0fdf4; border-radius: 8px; border: 1px solid #bbf7d0; margin-top: 12px; }
+.wp-quiz-r-item { font-size: 13px; margin-bottom: 6px; color: #374151; }
+.wp-quiz-r-item:last-child { margin-bottom: 0; }
+.wp-quiz-score { font-weight: 600; }
+.wp-quiz-score.s5, .wp-quiz-score.s4 { color: #16a34a; }
+.wp-quiz-score.s3 { color: #f59e0b; }
+.wp-quiz-score.s2, .wp-quiz-score.s1 { color: #ef4444; }
+.wp-quiz-comment { font-size: 12px; color: #6b7280; margin: 2px 0 0; line-height: 1.4; }
+
+/* scrollbar */
+.wp-card::-webkit-scrollbar { width: 6px; }
+.wp-card::-webkit-scrollbar-track { background: transparent; }
+.wp-card::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+.wp-card::-webkit-scrollbar-thumb:hover { background: #9ca3af; }

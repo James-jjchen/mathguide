@@ -1,0 +1,8 @@
+# Virtual Environment (root-level)
+.venv/
+
+# IDE (root-level)
+.idea/
+
+# Claude config
+.claude/
