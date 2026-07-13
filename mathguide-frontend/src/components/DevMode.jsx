@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { getDimMastery, getRecommendV2 } from '../api/mathguide';
 import './DevMode.css';
 

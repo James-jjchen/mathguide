@@ -11,7 +11,7 @@ export default function Sidebar({ dimData, collapsed, onToggle, onNodeClick, use
           <button className="sidebar-toggle" onClick={onToggle}>🗺️</button>
         </div>
         <div className="sidebar-collapsed-list">
-          {dimData?.dimensions
+          {[...(dimData?.dimensions || [])]
             ?.sort((a, b) => a.mastery - b.mastery)
             .slice(0, 10)
             .map(d => (

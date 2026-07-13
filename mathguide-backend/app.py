@@ -881,6 +881,14 @@ def get_recommendation_v2():
         planner = PathPlanner(user_id)
         recommendations = planner.recommend()
         summary = planner.get_user_state_summary()
+        problems_path = os.path.join(os.path.dirname(__file__), 'data', 'problems.json')
+        with open(problems_path, 'r', encoding='utf-8') as problems_file:
+            practice_dims = {
+                step.get('dim_id')
+                for problem in json.load(problems_file)
+                for step in problem.get('steps', [])
+                if step.get('dim_id')
+            }
 
         return jsonify({
             'recommendations': [
@@ -893,6 +901,7 @@ def get_recommendation_v2():
                     'score': a.score,
                     'explanation': a.explanation,
                     'affected_dims': a.affected_dims,
+                    'has_problem': a.target_dim in practice_dims,
                 }
                 for a in recommendations
             ],
@@ -953,8 +962,82 @@ def submit_practice_v2():
         for ans in answers:
             question_id = ans.get('question_id', '')
             node_id = ans.get('node_id')
+            dim_id = ans.get('dim_id')
             question_text = ans.get('question_text', '')
             student_answer = ans.get('student_answer', '')
+
+            # Native v2 flow: update the exact skill dimension using the
+            # deterministic outcome already established by the step UI.
+            if dim_id:
+                dim = database.get_dimension(dim_id)
+                if not dim:
+                    results.append({'question_id': question_id, 'dim_id': dim_id,
+                                    'error': '技能维度不存在'})
+                    continue
+
+                outcome = ans.get('outcome')
+                if outcome not in ('correct', 'wrong', 'stuck'):
+                    results.append({'question_id': question_id, 'dim_id': dim_id,
+                                    'error': 'outcome必须为correct、wrong或stuck'})
+                    continue
+
+                node_id = dim['parent_node_id']
+                node = database.get_node(node_id)
+                node_name = node['name'] if node else f"知识点{node_id}"
+                mastery_before = database.get_dim_mastery(user_id, dim_id)
+                feedback = database.apply_bayesian_feedback(user_id, dim_id, outcome)
+                mastery_after = feedback['mastery']
+
+                score = 5 if outcome == 'correct' else 2 if outcome == 'stuck' else 1
+                score_dist[score] = score_dist.get(score, 0) + 1
+                total_score += score
+                scored_count += 1
+
+                delta = mastery_after - mastery_before
+                compensation_events.append({
+                    'level': 'L1', 'dim_id': dim_id, 'node_id': node_id,
+                    'node_name': node_name,
+                    'description': f"维度反馈: {dim['name']} mastery变化 {delta:+.3f}",
+                    'delta': round(delta, 3),
+                })
+
+                if outcome == 'correct':
+                    propagated = database.propagate_to_siblings(user_id, dim_id, 0.3)
+                    for target_dim, gain in propagated:
+                        compensation_events.append({
+                            'level': 'L3', 'dim_id': target_dim,
+                            'source_dim_id': dim_id,
+                            'description': f'技能迁移: {dim_id} → {target_dim}',
+                            'delta': gain,
+                        })
+
+                for threshold in (0.5, 0.7):
+                    if mastery_before < threshold <= mastery_after:
+                        compensation_events.append({
+                            'level': 'L2', 'dim_id': dim_id, 'node_id': node_id,
+                            'node_name': node_name, 'threshold': threshold,
+                            'description': f"阈值突破: {dim['name']} mastery 跨越 {threshold}",
+                            'before': round(mastery_before, 3),
+                            'after': round(mastery_after, 3),
+                        })
+
+                if mastery_before < 0.3 and mastery_after >= 0.5:
+                    compensation_events.append({
+                        'level': 'L4', 'dim_id': dim_id, 'node_id': node_id,
+                        'node_name': node_name,
+                        'description': f"瓶颈突破: {dim['name']} 从薄弱跃升至掌握",
+                        'before': round(mastery_before, 3),
+                        'after': round(mastery_after, 3),
+                    })
+
+                results.append({
+                    'question_id': question_id, 'dim_id': dim_id,
+                    'node_id': node_id, 'node_name': node_name,
+                    'outcome': outcome, 'score': score,
+                    'mastery_before': round(mastery_before, 3),
+                    'mastery_after': round(mastery_after, 3),
+                })
+                continue
 
             if node_id is None:
                 results.append({'question_id': question_id, 'error': '缺少node_id'})
@@ -1031,6 +1114,9 @@ def submit_practice_v2():
 
         avg_score = round(total_score / scored_count, 1) if scored_count > 0 else 0
 
+        if any(ans.get('dim_id') for ans in answers):
+            database.sync_node_mastery_from_dims(user_id)
+
         # Update momentum based on average outcome
         if scored_count > 0:
             if avg_score >= 4.0:
@@ -1058,7 +1144,10 @@ def submit_practice_v2():
 
         # Save practice session
         try:
-            target_nodes = list(set(a['node_id'] for a in answers if a.get('node_id') is not None))
+            target_nodes = list(set(
+                result['node_id'] for result in results
+                if result.get('node_id') is not None
+            ))
             database.save_practice_session(user_id, target_nodes, answers, response_data)
         except Exception as e:
             print(f"保存练习记录失败（不影响提交结果）: {e}")
@@ -1124,23 +1213,32 @@ def get_problem_for_dim():
     matching.sort(key=lambda p: abs(p.get('difficulty', 3) - 2.5))
     problem = matching[0]
 
+    import random as _random
     steps_with_choices = []
     for step in problem.get('steps', []):
         correct_text = step.get('text', '')
         wrong_choices = [ep.get('desc', '') for ep in step.get('error_patterns', [])]
-        choices = [correct_text] + wrong_choices[:3]
+        choice_items = [(correct_text, True)] + [(choice, False) for choice in wrong_choices[:3]]
 
         generic_wrong = ['跳过这一步直接算结果', '用其他不相关的方法', '不确定，随便试试']
-        while len(choices) < 4:
+        while len(choice_items) < 4:
             for g in generic_wrong:
-                if g not in choices and len(choices) < 4:
-                    choices.append(g)
+                if all(text != g for text, _ in choice_items) and len(choice_items) < 4:
+                    choice_items.append((g, False))
+
+        _random.SystemRandom().shuffle(choice_items)
+        choices = [text for text, _ in choice_items]
+        correct_index = next(i for i, (_, is_correct) in enumerate(choice_items) if is_correct)
+        step_dim_id = step.get('dim_id') or dim_id
+        step_dim = database.get_dimension(step_dim_id)
 
         steps_with_choices.append({
             'id': step.get('id', ''),
             'text': step.get('text', ''),
             'choices': choices,
-            'correct': 0
+            'correct': correct_index,
+            'dim_id': step_dim_id,
+            'node_id': step_dim['parent_node_id'] if step_dim else None,
         })
 
     return jsonify({

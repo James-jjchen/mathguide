@@ -21,7 +21,7 @@ async function request(url, options = {}) {
     return data;
   } catch (err) {
     if (err.name === 'AbortError') {
-      throw new Error('请求超时，请检查网络连接');
+      throw new Error('请求超时，请检查网络连接', { cause: err });
     }
     throw err;
   } finally {

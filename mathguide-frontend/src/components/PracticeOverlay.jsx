@@ -1,15 +1,17 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import LatexBlock from './LatexBlock';
 import './PracticeOverlay.css';
 
-export default function PracticeOverlay({ problem, dimId, dimName, userId, onComplete, onClose, onAskAI }) {
+export default function PracticeOverlay({ problem, dimId, dimName, onComplete, onClose, onAskAI }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedChoice, setSelectedChoice] = useState(null);
   const [showResult, setShowResult] = useState(false);
   const [stepResults, setStepResults] = useState([]); // { stepId, correct, selected }
   const [finished, setFinished] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
-  const steps = problem?.steps || [];
+  const steps = useMemo(() => problem?.steps || [], [problem]);
   const step = steps[currentStep];
   const totalSteps = steps.length;
   const allCorrect = stepResults.every(r => r.correct);
@@ -23,10 +25,11 @@ export default function PracticeOverlay({ problem, dimId, dimName, userId, onCom
     const isCorrect = idx === step.correct;
     setStepResults(prev => [...prev, {
       stepId: step.id,
+      dimId: step.dim_id || dimId,
       correct: isCorrect,
       selected: idx,
     }]);
-  }, [showResult, step]);
+  }, [showResult, step, dimId]);
 
   const handleNext = useCallback(() => {
     if (currentStep + 1 >= totalSteps) {
@@ -38,14 +41,23 @@ export default function PracticeOverlay({ problem, dimId, dimName, userId, onCom
     }
   }, [currentStep, totalSteps]);
 
-  const handleComplete = useCallback(() => {
+  const handleComplete = useCallback(async () => {
     const answers = stepResults.map((r, i) => ({
       question_id: `${problem.id}_${r.stepId}`,
-      node_id: steps[i]?.node_id ? parseInt(steps[i].node_id) || 0 : 0,
+      dim_id: r.dimId,
+      node_id: steps[i]?.node_id ?? null,
+      outcome: r.correct ? 'correct' : 'wrong',
       question_text: steps[i]?.text || '',
       student_answer: `选择了: ${steps[i]?.choices?.[r.selected] || ''}`,
     }));
-    onComplete(answers);
+    setSubmitting(true);
+    setSubmitError('');
+    try {
+      await onComplete(answers);
+    } catch (error) {
+      setSubmitError(`提交失败：${error.message}`);
+      setSubmitting(false);
+    }
   }, [stepResults, problem, steps, onComplete]);
 
   if (finished) {
@@ -67,7 +79,10 @@ export default function PracticeOverlay({ problem, dimId, dimName, userId, onCom
               ))}
             </div>
             <div className="result-actions">
-              <button className="btn-primary" onClick={handleComplete}>返回推荐</button>
+              {submitError && <p className="practice-submit-error">{submitError}</p>}
+              <button className="btn-primary" onClick={handleComplete} disabled={submitting}>
+                {submitting ? '正在保存...' : submitError ? '重试提交' : '保存并返回推荐'}
+              </button>
             </div>
           </div>
         </div>

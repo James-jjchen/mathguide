@@ -13,6 +13,7 @@ export default function KnowledgeMap({ userId, onNodeClick }) {
 
   useEffect(() => {
     if (!userId) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true);
     getStageMap(userId)
       .then(d => { setData(d); setLoading(false); })

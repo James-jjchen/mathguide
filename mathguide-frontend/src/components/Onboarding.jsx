@@ -52,7 +52,14 @@ export default function Onboarding({ onComplete }) {
     if (step === 1) {
       if (!nicknameValid) return;
       if (level === 'beginner') {
-        await onComplete(nickname.trim(), {});
+        setLoading(true);
+        setError('');
+        try {
+          await onComplete(nickname.trim(), {});
+        } catch (e) {
+          setError('初始化失败: ' + e.message);
+          setLoading(false);
+        }
         return;
       }
       if (level === 'review') {
@@ -131,7 +138,23 @@ export default function Onboarding({ onComplete }) {
     Object.entries(nodeRatings).forEach(([id, rating]) => {
       mastery[id] = rating;
     });
-    await onComplete(userId, mastery);
+
+    // The verification quiz is authoritative for the nodes it tested.
+    // Convert the backend's 1–5 score into the 0–1 initialization range.
+    quizResults?.results?.forEach(result => {
+      if (result.node_id != null && Number.isFinite(result.score)) {
+        mastery[result.node_id] = Math.max(0, Math.min(1, (result.score - 1) / 4));
+      }
+    });
+
+    setLoading(true);
+    setError('');
+    try {
+      await onComplete(userId, mastery);
+    } catch (e) {
+      setError('初始化失败: ' + e.message);
+      setLoading(false);
+    }
   }
 
   function setNodeRating(nodeId, rating) {

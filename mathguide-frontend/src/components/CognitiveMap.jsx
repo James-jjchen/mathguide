@@ -30,6 +30,7 @@ export default function CognitiveMap({ userId, collapsed: controlledCollapsed, o
 
   useEffect(() => {
     if (!userId) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(true);
     setError(null);
     getStageMap(userId)

@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
-import { initUser, getRecommendV2, getDimMastery } from './api/mathguide';
+import { useState, useCallback } from 'react';
+import { initUser } from './api/mathguide';
 import Onboarding from './components/Onboarding';
 import MainLayout from './components/MainLayout';
 import DevMode from './components/DevMode';
@@ -15,14 +15,17 @@ export default function App() {
   const [devOpen, setDevOpen] = useState(false);
 
   const handleOnboardingComplete = useCallback(async (uid, nodeMastery) => {
+    await initUser(uid, { nodeMastery });
     setUserId(uid);
     localStorage.setItem(USER_KEY, uid);
-    await initUser(uid, { nodeMastery });
     setScreen('main');
   }, []);
 
-  const handleLogoClick = useCallback(() => {
-    // 5-tap detection is handled inside the logo element
+  const handleLogout = useCallback(() => {
+    localStorage.removeItem(USER_KEY);
+    setUserId('');
+    setDevOpen(false);
+    setScreen('onboarding');
   }, []);
 
   if (screen === 'onboarding') {
@@ -38,6 +41,7 @@ export default function App() {
       <MainLayout
         userId={userId}
         onLogoActivate={() => setDevOpen(true)}
+        onLogout={handleLogout}
       />
       {devOpen && <DevMode userId={userId} onClose={() => setDevOpen(false)} />}
     </div>

@@ -218,3 +218,9 @@
   display: flex;
   justify-content: center;
 }
+
+.practice-submit-error {
+  margin: 0 0 10px;
+  color: #dc2626;
+  font-size: 14px;
+}

@@ -115,14 +115,14 @@ function processText(text) {
   out = out.replace(tagPattern, (match) => {
     const id = savedTags.length;
     savedTags.push(match);
-    return `\x00TAG${id}\x00`;
+    return `__MATHGUIDE_TAG_${id}__`;
   });
 
   // 5. Escape user < > "
   out = out.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
   // 6. Restore protected tags
-  out = out.replace(/\x00TAG(\d+)\x00/g, (_, id) => savedTags[parseInt(id)]);
+  out = out.replace(/__MATHGUIDE_TAG_(\d+)__/g, (_, id) => savedTags[parseInt(id)]);
 
   // 7. Newlines to <br/>
   out = out.replace(/\n/g, '<br/>');
@@ -130,10 +130,11 @@ function processText(text) {
   return out;
 }
 
-export default function LatexBlock({ content }) {
+export default function LatexBlock({ content, text }) {
+  const source = content ?? text ?? '';
   const html = useMemo(() => {
-    const parts = parseMixedContent(content);
-    return parts.map((part, idx) => {
+    const parts = parseMixedContent(source);
+    return parts.map((part) => {
       if (part.type === 'text') return processText(part.text);
       if (part.type === 'display') return renderLatex(part.text, true);
       if (part.type === 'inline') return renderLatex(part.text, false);
@@ -148,7 +149,7 @@ export default function LatexBlock({ content }) {
       }
       return '';
     }).join('');
-  }, [content]);
+  }, [source]);
 
   return <span dangerouslySetInnerHTML={{ __html: html }} />;
 }

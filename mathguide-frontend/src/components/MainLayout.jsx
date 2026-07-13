@@ -8,7 +8,7 @@ import LoadingSpinner from './LoadingSpinner';
 import ErrorBanner from './ErrorBanner';
 import './MainLayout.css';
 
-export default function MainLayout({ userId, onLogoActivate }) {
+export default function MainLayout({ userId, onLogoActivate, onLogout }) {
   const [recommendations, setRecommendations] = useState([]);
   const [dimData, setDimData] = useState(null);
   const [momentum, setMomentum] = useState(0);
@@ -18,7 +18,7 @@ export default function MainLayout({ userId, onLogoActivate }) {
   const [chatInitialQuestion, setChatInitialQuestion] = useState('');
   const [practice, setPractice] = useState(null); // { dimId, dimName, problem }
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
-  const [logoClicks, setLogoClicks] = useState(0);
+  const [, setLogoClicks] = useState(0);
   const logoRef = useRef(null);
   const cardRefs = useRef({});
 
@@ -40,13 +40,17 @@ export default function MainLayout({ userId, onLogoActivate }) {
     }
   }, [userId]);
 
-  useEffect(() => { fetchData(); }, [fetchData]);
+  useEffect(() => {
+    // Data fetching is the external synchronization performed by this effect.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchData();
+  }, [fetchData]);
 
   const handlePractice = useCallback(async (dimId, dimName) => {
     try {
       const data = await getProblemForDim(dimId);
       setPractice({ dimId, dimName, problem: data.problem });
-    } catch (e) {
+    } catch {
       // If no problem found, open chat instead
       setChatInitialQuestion(`帮我练习 ${dimName}`);
       setChatOpen(true);
@@ -54,15 +58,10 @@ export default function MainLayout({ userId, onLogoActivate }) {
   }, []);
 
   const handlePracticeComplete = useCallback(async (results) => {
-    setPractice(null);
-    // Submit results
     if (results && results.length > 0) {
-      try {
-        await submitPracticeV2(userId, results);
-      } catch (e) {
-        console.error('提交练习失败:', e);
-      }
+      await submitPracticeV2(userId, results);
     }
+    setPractice(null);
     await fetchData();
   }, [userId, fetchData]);
 
@@ -111,6 +110,7 @@ export default function MainLayout({ userId, onLogoActivate }) {
             {momentum > 0 ? '+' : ''}{momentum.toFixed(2)}
           </span>
         </div>
+        <button className="main-logout" type="button" onClick={onLogout}>退出</button>
       </header>
 
       <div className="main-content">
@@ -127,7 +127,7 @@ export default function MainLayout({ userId, onLogoActivate }) {
           ) : (
             <div className="cards-container">
               {recommendations.map((rec) => (
-                <div key={rec.target_dim} ref={el => { cardRefs.current[rec.target_dim] = el; }}>
+                <div key={`${rec.action_type}:${rec.target_dim}`} ref={el => { cardRefs.current[rec.target_dim] = el; }}>
                   <RecommendationCard
                     recommendation={rec}
                     onPractice={() => handlePractice(rec.target_dim, rec.target_dim_name)}

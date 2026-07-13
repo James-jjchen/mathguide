@@ -54,6 +54,20 @@
   white-space: nowrap;
   margin-left: auto;
 }
+
+.main-logout {
+  border: 1px solid #dbe3ee;
+  border-radius: 8px;
+  background: #fff;
+  color: #64748b;
+  padding: 7px 12px;
+  cursor: pointer;
+}
+
+.main-logout:hover {
+  color: #dc2626;
+  border-color: #fecaca;
+}
 .momentum-indicator .positive {
   color: #10b981;
   font-weight: 600;

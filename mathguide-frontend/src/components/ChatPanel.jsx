@@ -11,19 +11,18 @@ export default function ChatPanel({ userId, initialQuestion = '', onClose }) {
   const inputRef = useRef(null);
   const messagesEndRef = useRef(null);
   const cancelRef = useRef(null);
+  const lastInitialQuestionRef = useRef('');
 
   useEffect(() => {
     inputRef.current?.focus();
-    if (initialQuestion) {
-      sendMessage(initialQuestion);
-    }
+    return () => cancelRef.current?.();
   }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, streamText]);
 
-  function sendMessage(text) {
+  const sendMessage = useCallback((text) => {
     const q = text || input.trim();
     if (!q || streaming) return;
 
@@ -41,30 +40,49 @@ export default function ChatPanel({ userId, initialQuestion = '', onClose }) {
         setStreamText(fullContent);
       },
       onDone() {
+        cancelRef.current = null;
         setMessages(prev => [...prev, { role: 'assistant', content: fullContent }]);
         setStreamText('');
         setStreaming(false);
       },
       onError(err) {
+        cancelRef.current = null;
         setMessages(prev => [...prev, { role: 'assistant', content: `错误: ${err.message}` }]);
         setStreamText('');
         setStreaming(false);
       },
     });
-  }
+  }, [input, streaming, userId]);
+
+  useEffect(() => {
+    if (!initialQuestion || initialQuestion === lastInitialQuestionRef.current) return;
+    // Delay until after the effect commits. In development StrictMode the
+    // first setup is cleaned up immediately, so only the committed setup sends.
+    const timer = window.setTimeout(() => {
+      lastInitialQuestionRef.current = initialQuestion;
+      sendMessage(initialQuestion);
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [initialQuestion, sendMessage]);
 
   const handleKeyDown = useCallback((e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
     }
-  }, [input, streaming]);
+  }, [sendMessage]);
+
+  const handleClose = useCallback(() => {
+    cancelRef.current?.();
+    cancelRef.current = null;
+    onClose();
+  }, [onClose]);
 
   return (
     <div className="chat-panel">
       <div className="chat-panel-header">
         <span>AI 助手</span>
-        <button className="chat-close" onClick={onClose}>×</button>
+        <button className="chat-close" onClick={handleClose}>×</button>
       </div>
 
       <div className="chat-messages">

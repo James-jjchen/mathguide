@@ -1,6 +1,3 @@
-import { useState, useEffect } from 'react';
-import { getProblemForDim } from '../api/mathguide';
-import LatexBlock from './LatexBlock';
 import './RecommendationCard.css';
 
 const TYPE_ICONS = {
@@ -21,6 +18,7 @@ const TYPE_LABELS = {
 
 export default function RecommendationCard({ recommendation, onPractice, onAskAI }) {
   const { action_type, target_dim_name, explanation, score, affected_dims } = recommendation;
+  const hasProblem = recommendation.has_problem !== false;
   const icon = TYPE_ICONS[action_type] || '📌';
   const label = TYPE_LABELS[action_type] || '推荐';
 
@@ -31,7 +29,7 @@ export default function RecommendationCard({ recommendation, onPractice, onAskAI
           {icon} {label}
         </span>
         <span className="rec-score">
-          推荐度: {(score * 100).toFixed(0)}%
+          推荐评分: {Number(score).toFixed(2)}
         </span>
       </div>
 
@@ -47,12 +45,14 @@ export default function RecommendationCard({ recommendation, onPractice, onAskAI
       )}
 
       <div className="rec-actions">
-        <button className="rec-btn practice-btn" onClick={onPractice}>
-          ✏️ 做题
+        <button className="rec-btn practice-btn" onClick={hasProblem ? onPractice : onAskAI}>
+          {hasProblem ? '✏️ 做题' : '💬 AI 学习'}
         </button>
-        <button className="rec-btn ask-btn" onClick={onAskAI}>
-          💬 问 AI
-        </button>
+        {hasProblem && (
+          <button className="rec-btn ask-btn" onClick={onAskAI}>
+            💬 问 AI
+          </button>
+        )}
       </div>
     </div>
   );
