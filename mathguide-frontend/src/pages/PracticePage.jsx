@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
-import { diagnoseWeaknesses, generatePractice, submitPractice } from '../api/mathguide';
+import { diagnoseWeaknesses, generatePractice, submitPracticeV2 } from '../api/mathguide';
 import LatexBlock from '../components/LatexBlock';
 import MasteryBar from '../components/MasteryBar';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -37,6 +37,73 @@ function saveState(userId, state) {
 
 function clearSavedState() {
   localStorage.removeItem(PRACTICE_STORAGE_KEY);
+}
+
+const LEVEL_CONFIG = {
+  L1: { color: '#3b82f6', bg: '#dbeafe', label: '步骤反馈' },
+  L2: { color: '#10b981', bg: '#d1fae5', label: '阈值突破' },
+  L3: { color: '#8b5cf6', bg: '#ede9fe', label: '传播效应' },
+  L4: { color: '#ef4444', bg: '#fee2e2', label: '瓶颈突破' },
+  momentum: { color: '#f59e0b', bg: '#fef3c7', label: '动量更新' },
+};
+
+function CompensationEvents({ events, momentum }) {
+  const grouped = {};
+  for (const ev of events) {
+    const level = ev.level || 'other';
+    if (!grouped[level]) grouped[level] = [];
+    grouped[level].push(ev);
+  }
+
+  const order = ['L1', 'L2', 'L3', 'L4', 'momentum', 'other'];
+
+  return (
+    <div className="comp-events-section">
+      <h3 className="comp-events-title">补偿事件</h3>
+
+      <div className="comp-events-list">
+        {order.map((level) => {
+          if (!grouped[level] || grouped[level].length === 0) return null;
+          const cfg = LEVEL_CONFIG[level] || { color: '#6b7280', bg: '#f3f4f6', label: level };
+
+          return (
+            <div key={level} className="comp-level-group">
+              <span className="comp-level-badge" style={{ background: cfg.bg, color: cfg.color }}>
+                {level} {cfg.label}
+              </span>
+              <div className="comp-level-events">
+                {grouped[level].map((ev, i) => (
+                  <div key={i} className="comp-event-item">
+                    <span className="comp-event-name">{ev.node_name || ev.dim_name || ''}</span>
+                    <span className="comp-event-desc">{ev.description}</span>
+                    {ev.delta !== undefined && (
+                      <span className={`comp-event-delta ${ev.delta >= 0 ? 'up' : 'down'}`}>
+                        {ev.delta >= 0 ? '+' : ''}{ev.delta.toFixed(3)}
+                      </span>
+                    )}
+                    {ev.before !== undefined && ev.after !== undefined && (
+                      <span className="comp-event-range">
+                        {ev.before.toFixed(2)}→{ev.after.toFixed(2)}
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {momentum !== undefined && (
+        <div className="comp-momentum">
+          <span className="comp-momentum-label">动量: </span>
+          <span className={`comp-momentum-value ${momentum >= 0 ? 'up' : 'down'}`}>
+            {momentum >= 0 ? '+' : ''}{momentum.toFixed(2)}
+          </span>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function PracticePage() {
@@ -131,7 +198,7 @@ export default function PracticePage() {
     setError(null);
     setLoading(true);
     try {
-      const data = await submitPractice(userId, answersList);
+      const data = await submitPracticeV2(userId, answersList);
       setResults(data);
       setStep('results');
       await refreshMastery();
@@ -302,6 +369,11 @@ export default function PracticePage() {
             </div>
           ))}
         </div>
+
+        {/* Compensation Events */}
+        {results.compensation_events && results.compensation_events.length > 0 && (
+          <CompensationEvents events={results.compensation_events} momentum={results.momentum} />
+        )}
 
         <div className="result-actions">
           <button className="back-link" onClick={handleRetry}>继续练习</button>

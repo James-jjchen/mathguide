@@ -1,0 +1,136 @@
+.dev-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 20px;
+}
+
+.dev-panel {
+  background: white;
+  border-radius: 12px;
+  width: 90vw;
+  max-width: 900px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.dev-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.dev-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #1f2937;
+}
+.dev-header button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: #f3f4f6;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dev-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 8px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.dev-tabs button {
+  padding: 6px 14px;
+  border: none;
+  background: #f3f4f6;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #6b7280;
+}
+.dev-tabs button.active {
+  background: #2563eb;
+  color: white;
+}
+
+.dev-content {
+  flex: 1;
+  overflow: auto;
+  padding: 12px 16px;
+}
+
+.dev-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.dev-table th,
+.dev-table td {
+  padding: 6px 8px;
+  text-align: left;
+  border-bottom: 1px solid #f3f4f6;
+}
+.dev-table th {
+  color: #6b7280;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+.dev-json pre {
+  font-size: 11px;
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 8px;
+  overflow: auto;
+  max-height: 500px;
+  margin: 0;
+}
+
+.dev-api-input {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.dev-api-input input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: monospace;
+}
+.dev-api-input button {
+  padding: 8px 16px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.dev-api-result {
+  font-size: 11px;
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 8px;
+  overflow: auto;
+  max-height: 400px;
+  white-space: pre-wrap;
+  margin: 0;
+  font-family: monospace;
+}

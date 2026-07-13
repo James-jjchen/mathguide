@@ -1,0 +1,2805 @@
+{
+  "version": "1.0",
+  "nodes": {
+    "sets_mapping": {
+      "id": "sets_mapping",
+      "name": "集合与映射",
+      "difficulty": 1,
+      "chapter_id": "ch1",
+      "dimensions": [
+        "sets_notation",
+        "mapping_concept"
+      ],
+      "prerequisites": {}
+    },
+    "elementary_functions": {
+      "id": "elementary_functions",
+      "name": "基本初等函数",
+      "difficulty": 1,
+      "chapter_id": "ch1",
+      "dimensions": [
+        "power_exp_log",
+        "trig_functions",
+        "inverse_trig"
+      ],
+      "prerequisites": {}
+    },
+    "composite_inverse": {
+      "id": "composite_inverse",
+      "name": "复合函数与反函数",
+      "difficulty": 2,
+      "chapter_id": "ch1",
+      "dimensions": [
+        "compose_basics",
+        "inverse_solving"
+      ],
+      "prerequisites": {}
+    },
+    "function_properties": {
+      "id": "function_properties",
+      "name": "函数性质(奇偶/周期/有界)",
+      "difficulty": 2,
+      "chapter_id": "ch1",
+      "dimensions": [
+        "symmetry_analysis",
+        "periodicity",
+        "boundedness"
+      ],
+      "prerequisites": {}
+    },
+    "limit_intuitive": {
+      "id": "limit_intuitive",
+      "name": "极限的直观理解",
+      "difficulty": 2,
+      "chapter_id": "ch1",
+      "dimensions": [
+        "seq_limits_intuit",
+        "func_limits_intuit",
+        "infinite_limits"
+      ],
+      "prerequisites": {}
+    },
+    "limit_epsilon_delta": {
+      "id": "limit_epsilon_delta",
+      "name": "极限的ε-δ定义",
+      "difficulty": 4,
+      "chapter_id": "ch1",
+      "dimensions": [
+        "epsilon_delta_proof",
+        "epsilon_N_proof"
+      ],
+      "prerequisites": {
+        "limit_intuitive": 0.8
+      }
+    },
+    "limit_rules": {
+      "id": "limit_rules",
+      "name": "极限运算法则",
+      "difficulty": 2,
+      "chapter_id": "ch1",
+      "dimensions": [
+        "limit_basic_ops",
+        "limit_squeeze",
+        "limit_monotone"
+      ],
+      "prerequisites": {
+        "limit_intuitive": 0.9
+      }
+    },
+    "important_limits": {
+      "id": "important_limits",
+      "name": "两个重要极限",
+      "difficulty": 3,
+      "chapter_id": "ch1",
+      "dimensions": [
+        "sin_over_x",
+        "one_plus_inf"
+      ],
+      "prerequisites": {
+        "limit_intuitive": 0.7,
+        "limit_rules": 0.6
+      }
+    },
+    "infinitesimals": {
+      "id": "infinitesimals",
+      "name": "无穷小与无穷大比较",
+      "difficulty": 3,
+      "chapter_id": "ch1",
+      "dimensions": [
+        "infinitesimal_order",
+        "equiv_infinitesimal"
+      ],
+      "prerequisites": {
+        "limit_intuitive": 0.7,
+        "limit_rules": 0.6
+      }
+    },
+    "continuity": {
+      "id": "continuity",
+      "name": "函数的连续性",
+      "difficulty": 2,
+      "chapter_id": "ch1",
+      "dimensions": [
+        "continuity_judge",
+        "continuity_prop"
+      ],
+      "prerequisites": {
+        "limit_rules": 0.7
+      }
+    },
+    "discontinuity": {
+      "id": "discontinuity",
+      "name": "间断点分类",
+      "difficulty": 3,
+      "chapter_id": "ch1",
+      "dimensions": [
+        "jump_removable",
+        "infinite_oscillation"
+      ],
+      "prerequisites": {
+        "continuity": 0.7
+      }
+    },
+    "continuous_properties": {
+      "id": "continuous_properties",
+      "name": "闭区间连续函数性质",
+      "difficulty": 3,
+      "chapter_id": "ch1",
+      "dimensions": [
+        "max_min_theorem",
+        "intermediate_value"
+      ],
+      "prerequisites": {
+        "continuity": 0.7
+      }
+    },
+    "derivative_def": {
+      "id": "derivative_def",
+      "name": "导数的定义",
+      "difficulty": 3,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "derivative_delta",
+        "diff_stuck_judge",
+        "derivative_by_def"
+      ],
+      "prerequisites": {
+        "limit_intuitive": 0.8,
+        "limit_rules": 0.6
+      }
+    },
+    "derivative_geo": {
+      "id": "derivative_geo",
+      "name": "导数的几何意义",
+      "difficulty": 2,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "tangent_eq",
+        "derivative_as_slope"
+      ],
+      "prerequisites": {
+        "derivative_def": 0.6
+      }
+    },
+    "diff_rules": {
+      "id": "diff_rules",
+      "name": "基本求导公式与法则",
+      "difficulty": 2,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "basic_diff_table",
+        "prod_quo_rule"
+      ],
+      "prerequisites": {
+        "derivative_def": 0.7,
+        "elementary_functions": 0.6
+      }
+    },
+    "chain_rule": {
+      "id": "chain_rule",
+      "name": "复合函数求导（链式法则）",
+      "difficulty": 3,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "chain_decompose",
+        "chain_advanced"
+      ],
+      "prerequisites": {
+        "diff_rules": 0.8,
+        "composite_inverse": 0.5
+      }
+    },
+    "implicit_param": {
+      "id": "implicit_param",
+      "name": "隐函数与参数方程求导",
+      "difficulty": 3,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "implicit_diff",
+        "param_diff"
+      ],
+      "prerequisites": {
+        "diff_rules": 0.7
+      }
+    },
+    "higher_derivatives": {
+      "id": "higher_derivatives",
+      "name": "高阶导数",
+      "difficulty": 3,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "high_order_table",
+        "pattern_finding"
+      ],
+      "prerequisites": {
+        "diff_rules": 0.7
+      }
+    },
+    "differential": {
+      "id": "differential",
+      "name": "微分",
+      "difficulty": 2,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "diff_concept",
+        "diff_approx"
+      ],
+      "prerequisites": {
+        "derivative_def": 0.6
+      }
+    },
+    "mean_value_theorems": {
+      "id": "mean_value_theorems",
+      "name": "微分中值定理",
+      "difficulty": 4,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "rolle_theorem",
+        "lagrange_mvt",
+        "cauchy_mvt"
+      ],
+      "prerequisites": {
+        "continuous_properties": 0.7,
+        "derivative_def": 0.7
+      }
+    },
+    "lhopital": {
+      "id": "lhopital",
+      "name": "洛必达法则",
+      "difficulty": 3,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "lhopital_recognition",
+        "lhopital_multi",
+        "power_convert"
+      ],
+      "prerequisites": {
+        "derivative_def": 0.6,
+        "limit_rules": 0.7,
+        "infinitesimals": 0.5
+      }
+    },
+    "monotonicity_extrema": {
+      "id": "monotonicity_extrema",
+      "name": "单调性与极值",
+      "difficulty": 3,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "monotonic_judge",
+        "extreme_values",
+        "optimization"
+      ],
+      "prerequisites": {
+        "derivative_def": 0.6,
+        "diff_rules": 0.7
+      }
+    },
+    "concavity_inflection": {
+      "id": "concavity_inflection",
+      "name": "凹凸性与拐点",
+      "difficulty": 3,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "concavity_judge",
+        "tangent_location"
+      ],
+      "prerequisites": {
+        "higher_derivatives": 0.6,
+        "monotonicity_extrema": 0.5
+      }
+    },
+    "taylor_formula": {
+      "id": "taylor_formula",
+      "name": "泰勒公式",
+      "difficulty": 4,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "taylor_expand",
+        "taylor_limit",
+        "taylor_approx"
+      ],
+      "prerequisites": {
+        "higher_derivatives": 0.7,
+        "mean_value_theorems": 0.6
+      }
+    },
+    "taylor_remainder": {
+      "id": "taylor_remainder",
+      "name": "泰勒余项估计",
+      "difficulty": 5,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "lagrange_remainder",
+        "peano_remainder"
+      ],
+      "prerequisites": {
+        "taylor_formula": 0.7,
+        "mean_value_theorems": 0.5
+      }
+    },
+    "asymptotes": {
+      "id": "asymptotes",
+      "name": "渐近线",
+      "difficulty": 3,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "horizontal_asymp",
+        "vertical_asymp",
+        "oblique_asymp"
+      ],
+      "prerequisites": {
+        "limit_rules": 0.6,
+        "monotonicity_extrema": 0.5
+      }
+    },
+    "function_graphing": {
+      "id": "function_graphing",
+      "name": "函数作图",
+      "difficulty": 3,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "graphing_process",
+        "graph_analysis"
+      ],
+      "prerequisites": {
+        "monotonicity_extrema": 0.6,
+        "concavity_inflection": 0.6,
+        "asymptotes": 0.5
+      }
+    },
+    "derivative_inequality": {
+      "id": "derivative_inequality",
+      "name": "导数证明不等式",
+      "difficulty": 4,
+      "chapter_id": "ch2",
+      "dimensions": [
+        "inequality_construction",
+        "mvt_func_construction",
+        "concavity_inequality"
+      ],
+      "prerequisites": {
+        "mean_value_theorems": 0.6,
+        "monotonicity_extrema": 0.7
+      }
+    },
+    "indefinite_concept": {
+      "id": "indefinite_concept",
+      "name": "不定积分概念",
+      "difficulty": 3,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "antiderivative_concept",
+        "basic_integral_table"
+      ],
+      "prerequisites": {
+        "diff_rules": 0.7
+      }
+    },
+    "substitution_1": {
+      "id": "substitution_1",
+      "name": "第一类换元（凑微分）",
+      "difficulty": 3,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "u_substitution_detect",
+        "inner_diff_extract"
+      ],
+      "prerequisites": {
+        "indefinite_concept": 0.7
+      }
+    },
+    "substitution_2": {
+      "id": "substitution_2",
+      "name": "第二类换元",
+      "difficulty": 4,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "trig_substitution",
+        "radical_overall",
+        "reciprocal_sub"
+      ],
+      "prerequisites": {
+        "indefinite_concept": 0.6
+      }
+    },
+    "parts_integration": {
+      "id": "parts_integration",
+      "name": "分部积分法",
+      "difficulty": 3,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "LIATE_choice",
+        "repeated_parts",
+        "log_inverse_integral"
+      ],
+      "prerequisites": {
+        "indefinite_concept": 0.7
+      }
+    },
+    "rational_integration": {
+      "id": "rational_integration",
+      "name": "有理函数积分",
+      "difficulty": 4,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "partial_fraction",
+        "rational_standard_forms"
+      ],
+      "prerequisites": {
+        "substitution_1": 0.5
+      }
+    },
+    "trig_integration": {
+      "id": "trig_integration",
+      "name": "三角函数积分",
+      "difficulty": 4,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "sin_cos_power",
+        "trig_product_transform",
+        "special_trig_integrals"
+      ],
+      "prerequisites": {
+        "substitution_1": 0.5,
+        "parts_integration": 0.5
+      }
+    },
+    "definite_def": {
+      "id": "definite_def",
+      "name": "定积分定义",
+      "difficulty": 3,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "riemann_sum",
+        "definite_notation"
+      ],
+      "prerequisites": {
+        "limit_intuitive": 0.6,
+        "indefinite_concept": 0.5
+      }
+    },
+    "integral_upper_limit": {
+      "id": "integral_upper_limit",
+      "name": "积分上限函数",
+      "difficulty": 3,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "F_prime_f",
+        "upper_limit_complex"
+      ],
+      "prerequisites": {
+        "definite_def": 0.6
+      }
+    },
+    "ftc_newton_leibniz": {
+      "id": "ftc_newton_leibniz",
+      "name": "微积分基本定理",
+      "difficulty": 4,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "ftc_application",
+        "ftc_concept_mastery"
+      ],
+      "prerequisites": {
+        "integral_upper_limit": 0.7,
+        "indefinite_concept": 0.6
+      }
+    },
+    "definite_techniques": {
+      "id": "definite_techniques",
+      "name": "定积分计算技巧",
+      "difficulty": 3,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "symmetric_integral",
+        "periodic_integral",
+        "wallis_integral",
+        "definite_sub_parts"
+      ],
+      "prerequisites": {
+        "ftc_newton_leibniz": 0.6
+      }
+    },
+    "improper_integral": {
+      "id": "improper_integral",
+      "name": "反常积分",
+      "difficulty": 4,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "infinite_limit_improper",
+        "singular_improper",
+        "comparison_test"
+      ],
+      "prerequisites": {
+        "definite_def": 0.6,
+        "ftc_newton_leibniz": 0.5
+      }
+    },
+    "integral_geo_application": {
+      "id": "integral_geo_application",
+      "name": "定积分几何应用",
+      "difficulty": 3,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "area_calc",
+        "volume_calc",
+        "arc_length"
+      ],
+      "prerequisites": {
+        "definite_techniques": 0.6
+      }
+    },
+    "integral_physics_application": {
+      "id": "integral_physics_application",
+      "name": "定积分物理应用",
+      "difficulty": 4,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "work_pressure",
+        "center_mass",
+        "physics_modeling"
+      ],
+      "prerequisites": {
+        "definite_techniques": 0.6
+      }
+    },
+    "integral_inequality": {
+      "id": "integral_inequality",
+      "name": "积分不等式",
+      "difficulty": 5,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "integral_monotone",
+        "cauchy_schwarz_int",
+        "integral_estimation"
+      ],
+      "prerequisites": {
+        "ftc_newton_leibniz": 0.6,
+        "definite_techniques": 0.5
+      }
+    },
+    "integral_advanced": {
+      "id": "integral_advanced",
+      "name": "积分综合应用",
+      "difficulty": 5,
+      "chapter_id": "ch3",
+      "dimensions": [
+        "multiple_technique",
+        "special_transforms"
+      ],
+      "prerequisites": {
+        "substitution_2": 0.5,
+        "parts_integration": 0.5,
+        "trig_integration": 0.5,
+        "rational_integration": 0.5
+      }
+    }
+  },
+  "dimensions": {
+    "sets_notation": {
+      "id": "sets_notation",
+      "name": "集合表示与运算",
+      "parent_node": "sets_mapping",
+      "difficulty": 1,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [],
+      "description": "区间、邻域表示，交并补运算"
+    },
+    "mapping_concept": {
+      "id": "mapping_concept",
+      "name": "映射与单射满射",
+      "parent_node": "sets_mapping",
+      "difficulty": 2,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [],
+      "description": "一一对应与函数定义的基础"
+    },
+    "power_exp_log": {
+      "id": "power_exp_log",
+      "name": "幂指对函数的性质",
+      "parent_node": "elementary_functions",
+      "difficulty": 1,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "e^x→导数不变",
+        "lnx→求导变1/x",
+        "幂函数→整数/分数指数"
+      ],
+      "description": ""
+    },
+    "trig_functions": {
+      "id": "trig_functions",
+      "name": "三角函数的性质",
+      "parent_node": "elementary_functions",
+      "difficulty": 2,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "sin/cos有界性",
+        "tan定义域",
+        "sec^2·csc^2关系"
+      ],
+      "description": ""
+    },
+    "inverse_trig": {
+      "id": "inverse_trig",
+      "name": "反三角函数",
+      "parent_node": "elementary_functions",
+      "difficulty": 3,
+      "node_weight": 0.2,
+      "siblings": [],
+      "typical_atoms": [
+        "arcsin定义域[-1,1]",
+        "arctan→有界性",
+        "反三角求导公式"
+      ],
+      "description": ""
+    },
+    "compose_basics": {
+      "id": "compose_basics",
+      "name": "复合函数分解",
+      "parent_node": "composite_inverse",
+      "difficulty": 2,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "ln(x^2+1)=ln∘(x^2+1)"
+      ],
+      "description": "将复合函数拆为基本函数的嵌套"
+    },
+    "inverse_solving": {
+      "id": "inverse_solving",
+      "name": "反函数求解与性质",
+      "parent_node": "composite_inverse",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "反函数微分公式推导"
+      ],
+      "description": ""
+    },
+    "symmetry_analysis": {
+      "id": "symmetry_analysis",
+      "name": "奇偶性分析",
+      "parent_node": "function_properties",
+      "difficulty": 2,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "奇×奇=偶",
+        "对称性简化积分区间"
+      ],
+      "description": ""
+    },
+    "periodicity": {
+      "id": "periodicity",
+      "name": "周期性利用",
+      "parent_node": "function_properties",
+      "difficulty": 2,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "正弦余弦周期",
+        "周期函数积分特性"
+      ],
+      "description": ""
+    },
+    "boundedness": {
+      "id": "boundedness",
+      "name": "有界性判断",
+      "parent_node": "function_properties",
+      "difficulty": 3,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "sin/cos有界",
+        "有理分式有界性分析"
+      ],
+      "description": ""
+    },
+    "seq_limits_intuit": {
+      "id": "seq_limits_intuit",
+      "name": "数列极限直觉",
+      "parent_node": "limit_intuitive",
+      "difficulty": 2,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "数列趋于某值",
+        "子列收敛性"
+      ],
+      "description": ""
+    },
+    "func_limits_intuit": {
+      "id": "func_limits_intuit",
+      "name": "函数极限直觉",
+      "parent_node": "limit_intuitive",
+      "difficulty": 2,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "x→∞时趋于常数",
+        "左右极限"
+      ],
+      "description": ""
+    },
+    "infinite_limits": {
+      "id": "infinite_limits",
+      "name": "无穷极限判断",
+      "parent_node": "limit_intuitive",
+      "difficulty": 2,
+      "node_weight": 0.2,
+      "siblings": [],
+      "typical_atoms": [
+        "分母趋零→无穷大",
+        "量级判断"
+      ],
+      "description": ""
+    },
+    "epsilon_delta_proof": {
+      "id": "epsilon_delta_proof",
+      "name": "ε-δ 证明",
+      "parent_node": "limit_epsilon_delta",
+      "difficulty": 5,
+      "node_weight": 0.5,
+      "siblings": [
+        "inequality_construction"
+      ],
+      "typical_atoms": [
+        "倒推δ",
+        "不等式放缩技巧"
+      ],
+      "description": ""
+    },
+    "epsilon_N_proof": {
+      "id": "epsilon_N_proof",
+      "name": "ε-N 数列极限证明",
+      "parent_node": "limit_epsilon_delta",
+      "difficulty": 4,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "取整找N",
+        "不等式放缩"
+      ],
+      "description": ""
+    },
+    "limit_basic_ops": {
+      "id": "limit_basic_ops",
+      "name": "四则运算与复合",
+      "parent_node": "limit_rules",
+      "difficulty": 2,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "加减乘除条件下可拆",
+        "分式极限处理"
+      ],
+      "description": ""
+    },
+    "limit_squeeze": {
+      "id": "limit_squeeze",
+      "name": "夹逼准则",
+      "parent_node": "limit_rules",
+      "difficulty": 3,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "n^n形式的极限",
+        "放缩技巧"
+      ],
+      "description": ""
+    },
+    "limit_monotone": {
+      "id": "limit_monotone",
+      "name": "单调有界准则",
+      "parent_node": "limit_rules",
+      "difficulty": 3,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "递推数列收敛判断",
+        "先证单调后证有界"
+      ],
+      "description": ""
+    },
+    "sin_over_x": {
+      "id": "sin_over_x",
+      "name": "sinx/x→1 的识别与变换",
+      "parent_node": "important_limits",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [
+        "equiv_infinitesimal",
+        "lhopital_recognition",
+        "taylor_limit"
+      ],
+      "typical_atoms": [
+        "sin(□)/□→1",
+        "sinx的变式极限"
+      ],
+      "description": ""
+    },
+    "one_plus_inf": {
+      "id": "one_plus_inf",
+      "name": "(1+x)^{1/x}→e 的识别与变换",
+      "parent_node": "important_limits",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [
+        "equiv_infinitesimal",
+        "lhopital_recognition",
+        "taylor_limit"
+      ],
+      "typical_atoms": [
+        "(1+□)^{1/□}→e",
+        "极限e的构造"
+      ],
+      "description": ""
+    },
+    "infinitesimal_order": {
+      "id": "infinitesimal_order",
+      "name": "无穷小阶数比较",
+      "parent_node": "infinitesimals",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [
+        "lhopital_recognition"
+      ],
+      "typical_atoms": [
+        "同阶/等价/高阶判断",
+        "等价无穷小替换"
+      ],
+      "description": ""
+    },
+    "equiv_infinitesimal": {
+      "id": "equiv_infinitesimal",
+      "name": "等价无穷小替换技巧",
+      "parent_node": "infinitesimals",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [
+        "lhopital_recognition",
+        "equiv_infinitesimal",
+        "lhopital_recognition",
+        "taylor_limit"
+      ],
+      "typical_atoms": [
+        "x→0时sinx~x, tanx~x, ln(1+x)~x, e^x-1~x",
+        "和积情况下替换规则"
+      ],
+      "description": ""
+    },
+    "continuity_judge": {
+      "id": "continuity_judge",
+      "name": "连续性判断",
+      "parent_node": "continuity",
+      "difficulty": 2,
+      "node_weight": 0.6,
+      "siblings": [],
+      "typical_atoms": [
+        "分段函数在分段点的连续性"
+      ],
+      "description": ""
+    },
+    "continuity_prop": {
+      "id": "continuity_prop",
+      "name": "连续函数的性质",
+      "parent_node": "continuity",
+      "difficulty": 3,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "连续函数的四则运算与复合"
+      ],
+      "description": ""
+    },
+    "jump_removable": {
+      "id": "jump_removable",
+      "name": "跳跃与可去间断点",
+      "parent_node": "discontinuity",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [],
+      "description": ""
+    },
+    "infinite_oscillation": {
+      "id": "infinite_oscillation",
+      "name": "无穷与振荡间断点",
+      "parent_node": "discontinuity",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "x→0时sin(1/x)振荡"
+      ],
+      "description": ""
+    },
+    "max_min_theorem": {
+      "id": "max_min_theorem",
+      "name": "最值定理应用",
+      "parent_node": "continuous_properties",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "闭区间上必有最大最小值"
+      ],
+      "description": ""
+    },
+    "intermediate_value": {
+      "id": "intermediate_value",
+      "name": "介值定理与零点定理",
+      "parent_node": "continuous_properties",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "异号定有根",
+        "方程根的存在性证明"
+      ],
+      "description": ""
+    },
+    "derivative_delta": {
+      "id": "derivative_delta",
+      "name": "差商极限形式",
+      "parent_node": "derivative_def",
+      "difficulty": 3,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "增量比取极限",
+        "左导数右导数"
+      ],
+      "description": ""
+    },
+    "diff_stuck_judge": {
+      "id": "diff_stuck_judge",
+      "name": "可导性判断",
+      "parent_node": "derivative_def",
+      "difficulty": 3,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "可导必连续",
+        "分段点可导性判断",
+        "绝对值函数的尖点"
+      ],
+      "description": ""
+    },
+    "derivative_by_def": {
+      "id": "derivative_by_def",
+      "name": "用定义求导",
+      "parent_node": "derivative_def",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "x→0时差商求导",
+        "极限导数的恒等变形"
+      ],
+      "description": ""
+    },
+    "tangent_eq": {
+      "id": "tangent_eq",
+      "name": "切线法线方程",
+      "parent_node": "derivative_geo",
+      "difficulty": 2,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [],
+      "description": ""
+    },
+    "derivative_as_slope": {
+      "id": "derivative_as_slope",
+      "name": "导数斜率解读",
+      "parent_node": "derivative_geo",
+      "difficulty": 2,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [],
+      "description": "由导数值判断函数变化趋势"
+    },
+    "basic_diff_table": {
+      "id": "basic_diff_table",
+      "name": "基本求导公式",
+      "parent_node": "diff_rules",
+      "difficulty": 2,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "幂指对三角反三角",
+        "常数倍/和差"
+      ],
+      "description": ""
+    },
+    "prod_quo_rule": {
+      "id": "prod_quo_rule",
+      "name": "乘除法求导",
+      "parent_node": "diff_rules",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "(uv)'=u'v+uv'",
+        "分式求导"
+      ],
+      "description": ""
+    },
+    "chain_decompose": {
+      "id": "chain_decompose",
+      "name": "链式分解",
+      "parent_node": "chain_rule",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "由外到内逐层求导",
+        "多层复合分解"
+      ],
+      "description": ""
+    },
+    "chain_advanced": {
+      "id": "chain_advanced",
+      "name": "链式法则综合",
+      "parent_node": "chain_rule",
+      "difficulty": 4,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "幂指函数求导(先取ln)",
+        "f(x)^g(x)型"
+      ],
+      "description": ""
+    },
+    "implicit_diff": {
+      "id": "implicit_diff",
+      "name": "隐函数求导",
+      "parent_node": "implicit_param",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "两边对x求导",
+        "y²+xy=0型处理"
+      ],
+      "description": ""
+    },
+    "param_diff": {
+      "id": "param_diff",
+      "name": "参数方程求导",
+      "parent_node": "implicit_param",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "dy/dx = (dy/dt)/(dx/dt)",
+        "二阶导参数形式"
+      ],
+      "description": ""
+    },
+    "high_order_table": {
+      "id": "high_order_table",
+      "name": "常见高阶导数公式",
+      "parent_node": "higher_derivatives",
+      "difficulty": 3,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "e^x的n阶导",
+        "sin/cos的n阶导",
+        "莱布尼茨公式"
+      ],
+      "description": ""
+    },
+    "pattern_finding": {
+      "id": "pattern_finding",
+      "name": "递推规律发现",
+      "parent_node": "higher_derivatives",
+      "difficulty": 4,
+      "node_weight": 0.6,
+      "siblings": [],
+      "typical_atoms": [
+        "求前几阶找模式",
+        "归纳法证n阶导",
+        "有理分式分解求高阶导"
+      ],
+      "description": ""
+    },
+    "diff_concept": {
+      "id": "diff_concept",
+      "name": "微分定义与几何意义",
+      "parent_node": "differential",
+      "difficulty": 2,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "dy=f'(x)dx",
+        "微分近似替代"
+      ],
+      "description": ""
+    },
+    "diff_approx": {
+      "id": "diff_approx",
+      "name": "微分近似计算",
+      "parent_node": "differential",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "小量近似",
+        "误差估计"
+      ],
+      "description": ""
+    },
+    "rolle_theorem": {
+      "id": "rolle_theorem",
+      "name": "罗尔定理应用",
+      "parent_node": "mean_value_theorems",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "端点值相等→内点导数零→方程有根"
+      ],
+      "description": ""
+    },
+    "lagrange_mvt": {
+      "id": "lagrange_mvt",
+      "name": "拉格朗日中值定理",
+      "parent_node": "mean_value_theorems",
+      "difficulty": 4,
+      "node_weight": 0.4,
+      "siblings": [
+        "inequality_construction",
+        "mvt_func_construction"
+      ],
+      "typical_atoms": [
+        "f(b)-f(a)=f'(ξ)(b-a)",
+        "函数差与导数关系",
+        "辅助函数构造法"
+      ],
+      "description": ""
+    },
+    "cauchy_mvt": {
+      "id": "cauchy_mvt",
+      "name": "柯西中值定理",
+      "parent_node": "mean_value_theorems",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "两个函数参数化",
+        "柯西证明等式的应用"
+      ],
+      "description": ""
+    },
+    "lhopital_recognition": {
+      "id": "lhopital_recognition",
+      "name": "0/0与∞/∞型识别",
+      "parent_node": "lhopital",
+      "difficulty": 3,
+      "node_weight": 0.4,
+      "siblings": [
+        "equiv_infinitesimal",
+        "equiv_infinitesimal",
+        "lhopital_recognition",
+        "taylor_limit"
+      ],
+      "typical_atoms": [
+        "代入先判断型",
+        "0·∞→0/0或∞/∞的转换"
+      ],
+      "description": ""
+    },
+    "lhopital_multi": {
+      "id": "lhopital_multi",
+      "name": "洛必达多次应用与局限",
+      "parent_node": "lhopital",
+      "difficulty": 3,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "可多次求导直到非不定型",
+        "循环求导不收敛时放弃"
+      ],
+      "description": ""
+    },
+    "power_convert": {
+      "id": "power_convert",
+      "name": "幂指型极限转换",
+      "parent_node": "lhopital",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "1^∞、0^0、∞^0取对数转换为0·∞→0/0"
+      ],
+      "description": ""
+    },
+    "monotonic_judge": {
+      "id": "monotonic_judge",
+      "name": "导数符号判单调",
+      "parent_node": "monotonicity_extrema",
+      "difficulty": 3,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "f'>0→递增",
+        "f'变号→极值点",
+        "驻点判定"
+      ],
+      "description": ""
+    },
+    "extreme_values": {
+      "id": "extreme_values",
+      "name": "极值求法与最值",
+      "parent_node": "monotonicity_extrema",
+      "difficulty": 3,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "一阶导数变号判极值",
+        "二阶导数判极值",
+        "闭区间最值求法"
+      ],
+      "description": ""
+    },
+    "optimization": {
+      "id": "optimization",
+      "name": "优化问题建模",
+      "parent_node": "monotonicity_extrema",
+      "difficulty": 4,
+      "node_weight": 0.2,
+      "siblings": [],
+      "typical_atoms": [
+        "建立目标函数",
+        "约束条件下求最值"
+      ],
+      "description": ""
+    },
+    "concavity_judge": {
+      "id": "concavity_judge",
+      "name": "二阶导数判凹凸",
+      "parent_node": "concavity_inflection",
+      "difficulty": 3,
+      "node_weight": 0.6,
+      "siblings": [],
+      "typical_atoms": [
+        "f''>0→凹(下凸)",
+        "f''<0→凸(上凸)",
+        "拐点判定"
+      ],
+      "description": ""
+    },
+    "tangent_location": {
+      "id": "tangent_location",
+      "name": "切线位置关系",
+      "parent_node": "concavity_inflection",
+      "difficulty": 3,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [],
+      "description": "凹函数切线在曲线下方，凸函数在上方"
+    },
+    "taylor_expand": {
+      "id": "taylor_expand",
+      "name": "常见泰勒展开",
+      "parent_node": "taylor_formula",
+      "difficulty": 4,
+      "node_weight": 0.4,
+      "siblings": [
+        "equiv_infinitesimal"
+      ],
+      "typical_atoms": [
+        "e^x, sinx, cosx, ln(1+x), (1+x)^α的展开",
+        "麦克劳林级数"
+      ],
+      "description": ""
+    },
+    "taylor_limit": {
+      "id": "taylor_limit",
+      "name": "泰勒求极限",
+      "parent_node": "taylor_formula",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [
+        "lhopital_recognition",
+        "equiv_infinitesimal",
+        "lhopital_recognition",
+        "taylor_limit"
+      ],
+      "typical_atoms": [
+        "高阶无穷小的合并",
+        "泰勒展开到所需阶"
+      ],
+      "description": ""
+    },
+    "taylor_approx": {
+      "id": "taylor_approx",
+      "name": "泰勒近似估计",
+      "parent_node": "taylor_formula",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "截断误差估计",
+        "函数近似计算"
+      ],
+      "description": ""
+    },
+    "lagrange_remainder": {
+      "id": "lagrange_remainder",
+      "name": "拉格朗日余项使用",
+      "parent_node": "taylor_remainder",
+      "difficulty": 5,
+      "node_weight": 0.5,
+      "siblings": [
+        "inequality_construction",
+        "lagrange_mvt"
+      ],
+      "typical_atoms": [
+        "f(x)与泰勒多项式的差用中值点控制"
+      ],
+      "description": ""
+    },
+    "peano_remainder": {
+      "id": "peano_remainder",
+      "name": "佩亚诺余项使用",
+      "parent_node": "taylor_remainder",
+      "difficulty": 4,
+      "node_weight": 0.5,
+      "siblings": [
+        "taylor_limit"
+      ],
+      "typical_atoms": [
+        "高阶无穷小记号",
+        "局部性质证明"
+      ],
+      "description": ""
+    },
+    "horizontal_asymp": {
+      "id": "horizontal_asymp",
+      "name": "水平渐近线",
+      "parent_node": "asymptotes",
+      "difficulty": 2,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "x→∞时极限为常数→水平渐近线"
+      ],
+      "description": ""
+    },
+    "vertical_asymp": {
+      "id": "vertical_asymp",
+      "name": "垂直渐近线",
+      "parent_node": "asymptotes",
+      "difficulty": 2,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "分母为零且极限无穷→垂直渐近线"
+      ],
+      "description": ""
+    },
+    "oblique_asymp": {
+      "id": "oblique_asymp",
+      "name": "斜渐近线",
+      "parent_node": "asymptotes",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "k=lim f(x)/x",
+        "b=lim f(x)-kx"
+      ],
+      "description": ""
+    },
+    "graphing_process": {
+      "id": "graphing_process",
+      "name": "函数作图完整流程",
+      "parent_node": "function_graphing",
+      "difficulty": 3,
+      "node_weight": 0.6,
+      "siblings": [],
+      "typical_atoms": [],
+      "description": "定义域→奇偶性→求导→极值→凹凸→渐近线→作图"
+    },
+    "graph_analysis": {
+      "id": "graph_analysis",
+      "name": "图像分析推理",
+      "parent_node": "function_graphing",
+      "difficulty": 4,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [],
+      "description": "从图像反推函数性质"
+    },
+    "inequality_construction": {
+      "id": "inequality_construction",
+      "name": "辅助函数构造法",
+      "parent_node": "derivative_inequality",
+      "difficulty": 5,
+      "node_weight": 0.4,
+      "siblings": [
+        "inequality_construction",
+        "mvt_func_construction",
+        "cauchy_schwarz_int",
+        "integral_estimation",
+        "concavity_inequality"
+      ],
+      "typical_atoms": [
+        "移项构造新函数",
+        "利用导数判定其单调性/极值证明不等式"
+      ],
+      "description": ""
+    },
+    "mvt_func_construction": {
+      "id": "mvt_func_construction",
+      "name": "中值定理辅助函数",
+      "parent_node": "derivative_inequality",
+      "difficulty": 5,
+      "node_weight": 0.3,
+      "siblings": [
+        "inequality_construction",
+        "mvt_func_construction",
+        "cauchy_schwarz_int",
+        "integral_estimation",
+        "concavity_inequality"
+      ],
+      "typical_atoms": [
+        "中值定理转化为不等式",
+        "构造符合定理条件的辅助函数"
+      ],
+      "description": ""
+    },
+    "concavity_inequality": {
+      "id": "concavity_inequality",
+      "name": "凹凸性证明不等式",
+      "parent_node": "derivative_inequality",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [
+        "inequality_construction",
+        "mvt_func_construction",
+        "cauchy_schwarz_int",
+        "integral_estimation",
+        "concavity_inequality"
+      ],
+      "typical_atoms": [
+        "Jensen不等式",
+        "切线/割线位置关系证不等式"
+      ],
+      "description": ""
+    },
+    "antiderivative_concept": {
+      "id": "antiderivative_concept",
+      "name": "原函数与不定积分",
+      "parent_node": "indefinite_concept",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "积分是微分的逆运算",
+        "+C的意义"
+      ],
+      "description": ""
+    },
+    "basic_integral_table": {
+      "id": "basic_integral_table",
+      "name": "基本积分公式",
+      "parent_node": "indefinite_concept",
+      "difficulty": 2,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "幂/指/对/三角的反向求导公式"
+      ],
+      "description": ""
+    },
+    "u_substitution_detect": {
+      "id": "u_substitution_detect",
+      "name": "凑微分模式识别",
+      "parent_node": "substitution_1",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "被积函数中某部分的导数在外侧",
+        "缺常系数时补",
+        "f'(x)/f(x)→ln|f(x)|"
+      ],
+      "description": "核心策略：看到∫f(g(x))·g'(x)dx → d(g(x))→∫f(u)du"
+    },
+    "inner_diff_extract": {
+      "id": "inner_diff_extract",
+      "name": "内函数导数分离",
+      "parent_node": "substitution_1",
+      "difficulty": 4,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "先判断能否写成复合函数形式",
+        "凑出微分号需要的系数"
+      ],
+      "description": "看到∫x·f(x²)dx → 内侧导数2x已出现一半"
+    },
+    "trig_substitution": {
+      "id": "trig_substitution",
+      "name": "三角替换识别",
+      "parent_node": "substitution_2",
+      "difficulty": 4,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "√(a²-x²)→x=a·sint",
+        "√(a²+x²)→x=a·tant",
+        "√(x²-a²)→x=a·sect",
+        "回代画出辅助三角形"
+      ],
+      "description": "判断依据：被积函数包含平方和/差/积的根号"
+    },
+    "radical_overall": {
+      "id": "radical_overall",
+      "name": "根式整体换元",
+      "parent_node": "substitution_2",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "多个根号→最小公倍数",
+        "√(线性分式)→整体换元"
+      ],
+      "description": ""
+    },
+    "reciprocal_sub": {
+      "id": "reciprocal_sub",
+      "name": "倒代换",
+      "parent_node": "substitution_2",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "分母次数高于分子→试x=1/t",
+        "有理化处理"
+      ],
+      "description": ""
+    },
+    "LIATE_choice": {
+      "id": "LIATE_choice",
+      "name": "u与dv的选择策略",
+      "parent_node": "parts_integration",
+      "difficulty": 3,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "LIATE顺序(反三角/对数/代数/三角/指数)",
+        "lnx→令u=lnx",
+        "e^x×三角→可循环",
+        "xⁿ×e^x→u=xⁿ",
+        "反三角×1→令u=反三角"
+      ],
+      "description": "选择u的原则：u求导后变简单，dv积分后不过于复杂"
+    },
+    "repeated_parts": {
+      "id": "repeated_parts",
+      "name": "循环分部与表格法",
+      "parent_node": "parts_integration",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "e^x·sinx型循环列方程",
+        "xⁿ·e^ax型多次分部"
+      ],
+      "description": "识别何时会出现与原积分同形式，解方程得结果"
+    },
+    "log_inverse_integral": {
+      "id": "log_inverse_integral",
+      "name": "含ln/反三角的积分",
+      "parent_node": "parts_integration",
+      "difficulty": 3,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "x·lnx",
+        "xⁿ·lnx",
+        "arcsinx",
+        "arctanx·x",
+        "lnx求导→1/x, 反三角求导→有理/根式"
+      ],
+      "description": "核心：把ln或反三角设为u, 1/x设为dv或直接dv=dx"
+    },
+    "partial_fraction": {
+      "id": "partial_fraction",
+      "name": "部分分式分解",
+      "parent_node": "rational_integration",
+      "difficulty": 4,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "真分式分解",
+        "一次因子/二次因子对应不同形式"
+      ],
+      "description": ""
+    },
+    "rational_standard_forms": {
+      "id": "rational_standard_forms",
+      "name": "标准有理积分形式",
+      "parent_node": "rational_integration",
+      "difficulty": 4,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "∫1/(x-a)dx=ln|x-a|",
+        "∫dx/(x²+a²)=arctan(x/a)/a",
+        "∫dx/√(a²-x²)=arcsin(x/a)",
+        "分子为线性→拆为ln+arctan"
+      ],
+      "description": ""
+    },
+    "sin_cos_power": {
+      "id": "sin_cos_power",
+      "name": "sinⁿx·cosᵐx 积分",
+      "parent_node": "trig_integration",
+      "difficulty": 4,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "奇数次→留一个换微分",
+        "偶次→倍角降幂",
+        "sin²x=(1-cos2x)/2"
+      ],
+      "description": ""
+    },
+    "trig_product_transform": {
+      "id": "trig_product_transform",
+      "name": "三角函数乘积转换",
+      "parent_node": "trig_integration",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "积化和差公式",
+        "万能代换t=tan(x/2)"
+      ],
+      "description": ""
+    },
+    "special_trig_integrals": {
+      "id": "special_trig_integrals",
+      "name": "特殊三角积分",
+      "parent_node": "trig_integration",
+      "difficulty": 5,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "∫sec³x·dx (分部+循环)",
+        "∫cscx·dx=ln|tan(x/2)|"
+      ],
+      "description": ""
+    },
+    "riemann_sum": {
+      "id": "riemann_sum",
+      "name": "黎曼和与分割-求和-取极限",
+      "parent_node": "definite_def",
+      "difficulty": 4,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "将区间n等分",
+        "取特殊点(右端点)",
+        "转化为n项和的极限"
+      ],
+      "description": ""
+    },
+    "definite_notation": {
+      "id": "definite_notation",
+      "name": "定积分符号与几何意义",
+      "parent_node": "definite_def",
+      "difficulty": 2,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "上下限",
+        "面积与定积分的关系"
+      ],
+      "description": ""
+    },
+    "F_prime_f": {
+      "id": "F_prime_f",
+      "name": "Φ'(x)=f(x) 的应用",
+      "parent_node": "integral_upper_limit",
+      "difficulty": 3,
+      "node_weight": 0.6,
+      "siblings": [],
+      "typical_atoms": [
+        "上限函数求导等于被积函数",
+        "变上限求导"
+      ],
+      "description": ""
+    },
+    "upper_limit_complex": {
+      "id": "upper_limit_complex",
+      "name": "复杂变限积分求导",
+      "parent_node": "integral_upper_limit",
+      "difficulty": 4,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "上下限都是函数",
+        "含参变量积分求导"
+      ],
+      "description": ""
+    },
+    "ftc_application": {
+      "id": "ftc_application",
+      "name": "N-L公式应用",
+      "parent_node": "ftc_newton_leibniz",
+      "difficulty": 3,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [
+        "原函数代入上下限相减",
+        "定积分转化为不定积分"
+      ],
+      "description": ""
+    },
+    "ftc_concept_mastery": {
+      "id": "ftc_concept_mastery",
+      "name": "基本定理的理解",
+      "parent_node": "ftc_newton_leibniz",
+      "difficulty": 4,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [],
+      "description": "微分与积分互为逆运算的核心理解"
+    },
+    "symmetric_integral": {
+      "id": "symmetric_integral",
+      "name": "对称性简化",
+      "parent_node": "definite_techniques",
+      "difficulty": 3,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "奇函数在对称区间积分为零",
+        "偶函数加倍"
+      ],
+      "description": ""
+    },
+    "periodic_integral": {
+      "id": "periodic_integral",
+      "name": "周期性简化",
+      "parent_node": "definite_techniques",
+      "difficulty": 3,
+      "node_weight": 0.2,
+      "siblings": [],
+      "typical_atoms": [
+        "周期函数在一个周期上积分相等"
+      ],
+      "description": ""
+    },
+    "wallis_integral": {
+      "id": "wallis_integral",
+      "name": "定积分递推与华里士公式",
+      "parent_node": "definite_techniques",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "∫₀^{π/2} sinⁿx·dx的递推",
+        "双阶乘表示"
+      ],
+      "description": ""
+    },
+    "definite_sub_parts": {
+      "id": "definite_sub_parts",
+      "name": "定积分换元与分部",
+      "parent_node": "definite_techniques",
+      "difficulty": 3,
+      "node_weight": 0.2,
+      "siblings": [],
+      "typical_atoms": [
+        "换元时变换上下限",
+        "分部积分配合上下限"
+      ],
+      "description": ""
+    },
+    "infinite_limit_improper": {
+      "id": "infinite_limit_improper",
+      "name": "无穷限反常积分",
+      "parent_node": "improper_integral",
+      "difficulty": 4,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "上限∞的极限处理",
+        "收敛性判断",
+        "p-积分∫₁^∞dx/x^p"
+      ],
+      "description": ""
+    },
+    "singular_improper": {
+      "id": "singular_improper",
+      "name": "无界函数反常积分",
+      "parent_node": "improper_integral",
+      "difficulty": 4,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "奇点的极限逼近",
+        "p-积分∫₀¹dx/x^p"
+      ],
+      "description": ""
+    },
+    "comparison_test": {
+      "id": "comparison_test",
+      "name": "比较判别法",
+      "parent_node": "improper_integral",
+      "difficulty": 4,
+      "node_weight": 0.2,
+      "siblings": [],
+      "typical_atoms": [
+        "放缩找比较对象",
+        "p-积分的比较参考"
+      ],
+      "description": ""
+    },
+    "area_calc": {
+      "id": "area_calc",
+      "name": "面积计算",
+      "parent_node": "integral_geo_application",
+      "difficulty": 3,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "曲线间面积",
+        "极坐标面积",
+        "参数方程面积"
+      ],
+      "description": "识别被积函数是上减下/右减左"
+    },
+    "volume_calc": {
+      "id": "volume_calc",
+      "name": "旋转体体积",
+      "parent_node": "integral_geo_application",
+      "difficulty": 3,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "绕x轴/y轴的盘法和壳法",
+        "截面面积法"
+      ],
+      "description": ""
+    },
+    "arc_length": {
+      "id": "arc_length",
+      "name": "弧长与侧面积",
+      "parent_node": "integral_geo_application",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [
+        "直角坐标/参数/极坐标弧长公式",
+        "旋转曲面面积"
+      ],
+      "description": ""
+    },
+    "work_pressure": {
+      "id": "work_pressure",
+      "name": "功与压力计算",
+      "parent_node": "integral_physics_application",
+      "difficulty": 4,
+      "node_weight": 0.4,
+      "siblings": [],
+      "typical_atoms": [
+        "变力做功∫F(x)dx",
+        "液体压力∫ρgh·dA"
+      ],
+      "description": ""
+    },
+    "center_mass": {
+      "id": "center_mass",
+      "name": "重心与质心",
+      "parent_node": "integral_physics_application",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [],
+      "description": ""
+    },
+    "physics_modeling": {
+      "id": "physics_modeling",
+      "name": "微元法建模",
+      "parent_node": "integral_physics_application",
+      "difficulty": 5,
+      "node_weight": 0.3,
+      "siblings": [],
+      "typical_atoms": [],
+      "description": "将物理问题分解为微元积分"
+    },
+    "integral_monotone": {
+      "id": "integral_monotone",
+      "name": "积分单调性证不等式",
+      "parent_node": "integral_inequality",
+      "difficulty": 4,
+      "node_weight": 0.3,
+      "siblings": [
+        "inequality_construction"
+      ],
+      "typical_atoms": [
+        "被积函数在区间上恒正/负→积分大小关系"
+      ],
+      "description": ""
+    },
+    "cauchy_schwarz_int": {
+      "id": "cauchy_schwarz_int",
+      "name": "柯西-施瓦茨积分不等式",
+      "parent_node": "integral_inequality",
+      "difficulty": 5,
+      "node_weight": 0.3,
+      "siblings": [
+        "inequality_construction",
+        "mvt_func_construction",
+        "cauchy_schwarz_int",
+        "integral_estimation",
+        "concavity_inequality"
+      ],
+      "typical_atoms": [
+        "(∫fg)² ≤ ∫f²·∫g²"
+      ],
+      "description": ""
+    },
+    "integral_estimation": {
+      "id": "integral_estimation",
+      "name": "积分估值与放缩",
+      "parent_node": "integral_inequality",
+      "difficulty": 5,
+      "node_weight": 0.4,
+      "siblings": [
+        "inequality_construction",
+        "mvt_func_construction",
+        "cauchy_schwarz_int",
+        "integral_estimation",
+        "concavity_inequality"
+      ],
+      "typical_atoms": [
+        "被积函数的最值估值",
+        "积分中值定理的应用",
+        "泰勒展开后积分"
+      ],
+      "description": ""
+    },
+    "multiple_technique": {
+      "id": "multiple_technique",
+      "name": "多技巧复合积分",
+      "parent_node": "integral_advanced",
+      "difficulty": 5,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [],
+      "description": "同时使用换元+分部+恒等变形"
+    },
+    "special_transforms": {
+      "id": "special_transforms",
+      "name": "特殊变换处理",
+      "parent_node": "integral_advanced",
+      "difficulty": 5,
+      "node_weight": 0.5,
+      "siblings": [],
+      "typical_atoms": [],
+      "description": "欧拉替换、有理化、三角恒等式等非常规技巧"
+    }
+  },
+  "edges": [
+    {
+      "from_dim": "boundedness",
+      "to_dim": "epsilon_delta_proof",
+      "transfer_gain": 0.9,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": "有界性直觉是ε-δ放缩的基础"
+    },
+    {
+      "from_dim": "basic_diff_table",
+      "to_dim": "chain_decompose",
+      "transfer_gain": 0.95,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": "先会基本求导才能分解复合"
+    },
+    {
+      "from_dim": "chain_decompose",
+      "to_dim": "chain_advanced",
+      "transfer_gain": 0.9,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": ""
+    },
+    {
+      "from_dim": "infinitesimal_order",
+      "to_dim": "lhopital_recognition",
+      "transfer_gain": 0.8,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": ""
+    },
+    {
+      "from_dim": "basic_diff_table",
+      "to_dim": "lhopital_recognition",
+      "transfer_gain": 0.8,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": ""
+    },
+    {
+      "from_dim": "basic_integral_table",
+      "to_dim": "u_substitution_detect",
+      "transfer_gain": 0.9,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": ""
+    },
+    {
+      "from_dim": "basic_integral_table",
+      "to_dim": "LIATE_choice",
+      "transfer_gain": 0.8,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": ""
+    },
+    {
+      "from_dim": "u_substitution_detect",
+      "to_dim": "trig_substitution",
+      "transfer_gain": 0.6,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": "凑微分能力是第二类换元的前置"
+    },
+    {
+      "from_dim": "u_substitution_detect",
+      "to_dim": "radical_overall",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": ""
+    },
+    {
+      "from_dim": "trig_substitution",
+      "to_dim": "reciprocal_sub",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": "备选策略，不强依赖"
+    },
+    {
+      "from_dim": "antiderivative_concept",
+      "to_dim": "ftc_application",
+      "transfer_gain": 0.9,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": "先有不定积分才能用N-L公式"
+    },
+    {
+      "from_dim": "fl_prime_f",
+      "to_dim": "ftc_application",
+      "transfer_gain": 0.8,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": "积分上限函数理解FTC的关键"
+    },
+    {
+      "from_dim": "lagrange_mvt",
+      "to_dim": "inequality_construction",
+      "transfer_gain": 0.85,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": "中值定理是最常见的不等式证明工具"
+    },
+    {
+      "from_dim": "monotonic_judge",
+      "to_dim": "inequality_construction",
+      "transfer_gain": 0.8,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": "单调性判定是不等式证明的常用手段"
+    },
+    {
+      "from_dim": "basic_diff_table",
+      "to_dim": "basic_integral_table",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "微分表反过来就是积分表"
+    },
+    {
+      "from_dim": "chain_decompose",
+      "to_dim": "u_substitution_detect",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "链式分解能力强的人更易识别复合函数积分模式"
+    },
+    {
+      "from_dim": "prod_quo_rule",
+      "to_dim": "LIATE_choice",
+      "transfer_gain": 0.35,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "乘法法则的反向就是分部积分"
+    },
+    {
+      "from_dim": "fl_prime_f",
+      "to_dim": "ftc_concept_mastery",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "积分上限函数求导帮助理解FTC"
+    },
+    {
+      "from_dim": "limit_rules",
+      "to_dim": "derivative_def",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "极限基础好的人学导数定义更快"
+    },
+    {
+      "from_dim": "sin_over_x",
+      "to_dim": "derivative_by_def",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "重要极限的处理技巧迁移到导数定义中的极限"
+    },
+    {
+      "from_dim": "monotonic_judge",
+      "to_dim": "inequality_construction",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "构造函数后用单调性判断正负是最常见的不等式证明法"
+    },
+    {
+      "from_dim": "equiv_infinitesimal",
+      "to_dim": "lhopital_recognition",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "等价无穷小和洛必达都是求00型极限的工具，可互相替代"
+    },
+    {
+      "from_dim": "taylor_limit",
+      "to_dim": "lhopital_recognition",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "泰勒展开和洛必达都是求极限的常用工具"
+    },
+    {
+      "from_dim": "taylor_limit",
+      "to_dim": "equiv_infinitesimal",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "泰勒展开能揭示等价无穷小的来源"
+    },
+    {
+      "from_dim": "basic_diff_table",
+      "to_dim": "basic_integral_table",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 3,
+      "edge_type": "dual",
+      "description": "微分表与积分表互为逆运算"
+    },
+    {
+      "from_dim": "chain_rule",
+      "to_dim": "substitution_1",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 3,
+      "edge_type": "dual",
+      "description": "链式法则的反向就是第一类换元"
+    },
+    {
+      "from_dim": "prod_quo_rule",
+      "to_dim": "parts_integration",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 3,
+      "edge_type": "dual",
+      "description": "乘法法则的反向就是分部积分法"
+    },
+    {
+      "from_dim": "sin_cos_power",
+      "to_dim": "trig_substitution",
+      "transfer_gain": 0.25,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "三角函数积分技巧有助于三角替换后的积分计算"
+    },
+    {
+      "from_dim": "symmetry_analysis",
+      "to_dim": "symmetric_integral",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "函数奇偶性的识别直接用于简化定积分"
+    },
+    {
+      "from_dim": "periodicity",
+      "to_dim": "periodic_integral",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "周期函数性质直接用于简化定积分"
+    },
+    {
+      "from_dim": "limit_squeeze",
+      "to_dim": "epsilon_delta_proof",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "夹逼准则中的放缩技巧可迁移到ε-δ证明"
+    },
+    {
+      "from_dim": "limit_monotone",
+      "to_dim": "pattern_finding",
+      "transfer_gain": 0.2,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "单调有界递推→高阶导的找规律思维"
+    },
+    {
+      "from_dim": "riemann_sum",
+      "to_dim": "limit_squeeze",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "黎曼和化为n项和的极限→需要夹逼或定积分定义"
+    },
+    {
+      "from_dim": "riemann_sum",
+      "to_dim": "epsilon_N_proof",
+      "transfer_gain": 0.25,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "黎曼和的分割取点思维与ε-N证明中的构造类似"
+    },
+    {
+      "from_dim": "lagrange_mvt",
+      "to_dim": "integral_estimation",
+      "transfer_gain": 0.35,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "中值定理的辅助函数构造法迁移到积分估值"
+    },
+    {
+      "from_dim": "lagrange_mvt",
+      "to_dim": "inequality_construction",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "拉格朗日中值定理是不等式证明的核心工具"
+    },
+    {
+      "from_dim": "cauchy_mvt",
+      "to_dim": "inequality_construction",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "柯西中值定理可用于构造比值的极限"
+    },
+    {
+      "from_dim": "inequality_construction",
+      "to_dim": "mvt_func_construction",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "不等式构造和中值定理辅助函数共享底层技巧"
+    },
+    {
+      "from_dim": "taylor_approx",
+      "to_dim": "integral_estimation",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "泰勒近似可用于积分放缩"
+    },
+    {
+      "from_dim": "lagrange_remainder",
+      "to_dim": "integral_estimation",
+      "transfer_gain": 0.35,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "泰勒余项估计的放缩技巧迁移到积分不等式"
+    },
+    {
+      "from_dim": "compose_basics",
+      "to_dim": "u_substitution_detect",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "复合函数分解能力直接用于识别凑微分模式"
+    },
+    {
+      "from_dim": "compose_basics",
+      "to_dim": "chain_decompose",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "复合函数分解是链式法则的前置技能"
+    },
+    {
+      "from_dim": "infinite_limit_improper",
+      "to_dim": "limit_intuitive",
+      "transfer_gain": 0.2,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "反常积分计算加深对无穷极限的理解"
+    },
+    {
+      "from_dim": "improper_integral",
+      "to_dim": "continuous_properties",
+      "transfer_gain": 0.15,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "反常积分的奇点处理反向强化了对连续性的理解"
+    },
+    {
+      "from_dim": "epsilon_delta_proof",
+      "to_dim": "epsilon_N_proof",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "ε-δ和ε-N是同一套语言，一个用于函数极限，一个用于数列极限"
+    },
+    {
+      "from_dim": "limit_squeeze",
+      "to_dim": "epsilon_delta_proof",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "夹逼准则和ε-δ定义都是极限存在性的严格论证方法"
+    },
+    {
+      "from_dim": "infinitesimal_order",
+      "to_dim": "limit_squeeze",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "无穷小阶数和夹逼准则都是极限比较工具"
+    },
+    {
+      "from_dim": "u_substitution_detect",
+      "to_dim": "trig_substitution",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "第一类和第二类换元虽然形式不同，但共享'换元后简化'的核心思想"
+    },
+    {
+      "from_dim": "sin_over_x",
+      "to_dim": "one_plus_inf",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "两个重要极限代表了两种最基本的极限技巧：三角→0型极限和(1+□)^{1/□}构造"
+    },
+    {
+      "from_dim": "lhopital_recognition",
+      "to_dim": "taylor_limit",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "洛必达和泰勒展开都可求0/0型极限，洛必达更直接但可能循环"
+    },
+    {
+      "from_dim": "LIATE_choice",
+      "to_dim": "u_substitution_detect",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "面对一个积分题，最先判断的是用换元还是用分部——这是两种思考模式"
+    },
+    {
+      "from_dim": "volume_calc",
+      "to_dim": "work_pressure",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "求体积和求功都用微元法，都是'分割+近似+求和+取极限'"
+    },
+    {
+      "from_dim": "tangent_eq",
+      "to_dim": "diff_approx",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "切线和微分近似共享线性化的核心思想"
+    },
+    {
+      "from_dim": "implicit_diff",
+      "to_dim": "param_diff",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "隐函数和参数方程求导都是显式求导的补充形式"
+    },
+    {
+      "from_dim": "monotonic_judge",
+      "to_dim": "concavity_judge",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "一阶导数判单调和二阶导数判凹凸是同一模式在不同阶数的应用"
+    },
+    {
+      "from_dim": "chain_rule",
+      "to_dim": "substitution_1",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 3,
+      "edge_type": "dual",
+      "description": "链式法则和第一类换元积分互为逆运算"
+    },
+    {
+      "from_dim": "prod_quo_rule",
+      "to_dim": "parts_integration",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 3,
+      "edge_type": "dual",
+      "description": "乘法法则和分部积分法互为逆运算"
+    },
+    {
+      "from_dim": "derivative_def",
+      "to_dim": "indefinite_concept",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 3,
+      "edge_type": "dual",
+      "description": "求导和不定积分是整个微积分的核心互逆关系"
+    },
+    {
+      "from_dim": "fl_prime_f",
+      "to_dim": "ftc_newton_leibniz",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 3,
+      "edge_type": "dual",
+      "description": "积分上限函数求导和微积分基本定理从两个方向连接微分与积分"
+    },
+    {
+      "from_dim": "higher_derivatives",
+      "to_dim": "pattern_finding",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 3,
+      "edge_type": "dual",
+      "description": "高阶导数的递推规律与定积分递推(H华里士)共享'找模式'的思维"
+    },
+    {
+      "from_dim": "derivative_delta",
+      "to_dim": "tangent_eq",
+      "transfer_gain": 0.7,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": ""
+    },
+    {
+      "from_dim": "derivative_delta",
+      "to_dim": "diff_approx",
+      "transfer_gain": 0.6,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": ""
+    },
+    {
+      "from_dim": "basic_diff_table",
+      "to_dim": "chain_decompose",
+      "transfer_gain": 0.95,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": ""
+    },
+    {
+      "from_dim": "prod_quo_rule",
+      "to_dim": "LIATE_choice",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": "乘积法则是分部积分的微分基础"
+    },
+    {
+      "from_dim": "prod_quo_rule",
+      "to_dim": "implicit_diff",
+      "transfer_gain": 0.6,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": "乘积法则是隐函数求导的基础"
+    },
+    {
+      "from_dim": "basic_integral_table",
+      "to_dim": "partial_fraction",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": "基本积分公式是部分分式积分的前提"
+    },
+    {
+      "from_dim": "prod_quo_rule",
+      "to_dim": "rational_standard_forms",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": ""
+    },
+    {
+      "from_dim": "infinite_limit_improper",
+      "to_dim": "comparison_test",
+      "transfer_gain": 0.6,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": "先会收敛性判断再做比较"
+    },
+    {
+      "from_dim": "singular_improper",
+      "to_dim": "comparison_test",
+      "transfer_gain": 0.6,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": ""
+    },
+    {
+      "from_dim": "maximum_minimum_theorem",
+      "to_dim": "extreme_values",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 4,
+      "edge_type": "prerequisite",
+      "description": "闭区间最值定理是极值问题的理论基础"
+    },
+    {
+      "from_dim": "compose_basics",
+      "to_dim": "inner_diff_extract",
+      "transfer_gain": 0.35,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "复合分解能力直接迁移到凑微分中的内函数分离"
+    },
+    {
+      "from_dim": "prod_quo_rule",
+      "to_dim": "chain_advanced",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "乘法法则是幂指函数求导的基础"
+    },
+    {
+      "from_dim": "basic_diff_table",
+      "to_dim": "derivative_by_def",
+      "transfer_gain": 0.2,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "熟练掌握基本求导公式后，用定义求特殊点的导数更容易"
+    },
+    {
+      "from_dim": "epsilon_delta_proof",
+      "to_dim": "infinitesimal_order",
+      "transfer_gain": 0.2,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "ε-δ证明中练出的不等式放缩能力可迁移到无穷小阶数比较"
+    },
+    {
+      "from_dim": "infinitesimal_order",
+      "to_dim": "limit_squeeze",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "无穷小阶数比较需要的不等式直觉同样适用于夹逼准则"
+    },
+    {
+      "from_dim": "tangent_eq",
+      "to_dim": "diff_approx",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "切线线性近似的直观理解帮助理解微分近似"
+    },
+    {
+      "from_dim": "extreme_values",
+      "to_dim": "optimization",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "极值判定是优化问题的基础"
+    },
+    {
+      "from_dim": "monotonic_judge",
+      "to_dim": "extreme_values",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "单调性是极值判定的前置——求极值必须会分析单调区间"
+    },
+    {
+      "from_dim": "concavity_judge",
+      "to_dim": "extreme_values",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "凹凸性辅助极值判定（二阶导判定法）"
+    },
+    {
+      "from_dim": "tangent_location",
+      "to_dim": "concavity_inequality",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "切线在凹凸函数曲线上下方的不等式关系直接迁移到不等式证明"
+    },
+    {
+      "from_dim": "partial_fraction",
+      "to_dim": "rational_standard_forms",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "学会部分分式分解后才能套用标准有理积分公式"
+    },
+    {
+      "from_dim": "sin_cos_power",
+      "to_dim": "trig_product_transform",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "降幂公式的使用经验帮助三角乘积的恒等变换"
+    },
+    {
+      "from_dim": "u_substitution_detect",
+      "to_dim": "inner_diff_extract",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "凑微分的第一步是检测复合结构，两者本质相同"
+    },
+    {
+      "from_dim": "derivative_geo",
+      "to_dim": "symmetric_integral",
+      "transfer_gain": 0.15,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "导数的几何直觉帮助理解函数图像的对称性"
+    },
+    {
+      "from_dim": "graphing_process",
+      "to_dim": "graph_analysis",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": ""
+    },
+    {
+      "from_dim": "horizontal_asymp",
+      "to_dim": "oblique_asymp",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "水平渐近线是斜渐近线的特例(k=0)"
+    },
+    {
+      "from_dim": "area_calc",
+      "to_dim": "volume_calc",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "面积计算的所有方法（定积分上下限/被积函数）可迁移到体积"
+    },
+    {
+      "from_dim": "volume_calc",
+      "to_dim": "arc_length",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "类似微元思想延伸到弧长计算"
+    },
+    {
+      "from_dim": "work_pressure",
+      "to_dim": "physics_modeling",
+      "transfer_gain": 0.5,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "功和压力的计算经验帮助建立一般物理问题的微元模型"
+    },
+    {
+      "from_dim": "center_mass",
+      "to_dim": "physics_modeling",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": ""
+    },
+    {
+      "from_dim": "repeated_parts",
+      "to_dim": "wallis_integral",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "表格法分部的递推思维与华里士公式的递推共享模式"
+    },
+    {
+      "from_dim": "repeated_parts",
+      "to_dim": "pattern_finding",
+      "transfer_gain": 0.25,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "循环分部后列方程解原积分，收敛到高阶导数的递推规律发现"
+    },
+    {
+      "from_dim": "power_convert",
+      "to_dim": "lhopital_multi",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "幂指型极限的取对数转换等价于多次求导"
+    },
+    {
+      "from_dim": "equiv_infinitesimal",
+      "to_dim": "sin_over_x",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "等价无穷小替换时，第一个等价来自sine重要极限"
+    },
+    {
+      "from_dim": "limit_squeeze",
+      "to_dim": "comparison_test",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "夹逼准则和反常积分的比较判别法共享相同的放缩哲学"
+    },
+    {
+      "from_dim": "epsilon_delta_proof",
+      "to_dim": "lagrange_remainder",
+      "transfer_gain": 0.4,
+      "cognitive_distance": 3,
+      "edge_type": "analogy",
+      "description": "ε-δ中的不等式放缩技巧直接迁移到泰勒余项估计"
+    },
+    {
+      "from_dim": "u_substitution_detect",
+      "to_dim": "LIATE_choice",
+      "transfer_gain": 0.2,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "检验凑微分是否可行→不行再考虑分部——这是积分策略决策流程"
+    },
+    {
+      "from_dim": "lhopital_recognition",
+      "to_dim": "taylor_limit",
+      "transfer_gain": 0.3,
+      "cognitive_distance": 2,
+      "edge_type": "transfer",
+      "description": "洛必达法则不适用时（循环/复杂），转泰勒展开——策略切换路径"
+    }
+  ]
+}

@@ -854,11 +854,312 @@ def admin_delete_user(user_id):
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/api/recommend-v2', methods=['POST'])
+def get_recommendation_v2():
+    """
+    Advanced recommendation endpoint using path planner with 5 action types.
+
+    Expected JSON input:
+        {"user_id": "student_001"}
+
+    Returns:
+        {
+            "recommendations": [{"action_type","target_dim","target_dim_name",
+                                 "cost","reward","score","explanation","affected_dims"}, ...],
+            "momentum": 0.0,
+            "user_state_summary": {"dim_count": 106, "weak_dims": 12, "avg_mastery": 0.45}
+        }
+    """
+    try:
+        data = request.get_json()
+        if not data or 'user_id' not in data:
+            return jsonify({'error': '缺少user_id字段'}), 400
+
+        user_id = data['user_id']
+
+        from path_planner import PathPlanner
+        planner = PathPlanner(user_id)
+        recommendations = planner.recommend()
+        summary = planner.get_user_state_summary()
+
+        return jsonify({
+            'recommendations': [
+                {
+                    'action_type': a.action_type,
+                    'target_dim': a.target_dim,
+                    'target_dim_name': a.target_dim_name,
+                    'cost': a.cost,
+                    'reward': a.reward,
+                    'score': a.score,
+                    'explanation': a.explanation,
+                    'affected_dims': a.affected_dims,
+                }
+                for a in recommendations
+            ],
+            'momentum': summary['momentum'],
+            'user_state_summary': {
+                'dim_count': summary['dim_count'],
+                'weak_dims': summary['weak_dims'],
+                'avg_mastery': summary['avg_mastery'],
+            },
+        })
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': f'推荐引擎出错: {str(e)}'}), 500
+
+
+@app.route('/api/submit-practice-v2', methods=['POST'])
+def submit_practice_v2():
+    """
+    提交练习答案并评估接口（v2: 包含补偿事件检测）
+
+    Expected JSON input:
+        {
+            "user_id": "student_001",
+            "answers": [{"question_id": "...", "node_id": 2,
+                         "question_text": "...", "student_answer": "..."}]
+        }
+
+    Returns:
+        {
+            "results": [...],
+            "summary": {...},
+            "compensation_events": [{"level": "L1"/"L2"/"L3"/"L4", ...}],
+            "momentum": 0.15
+        }
+    """
+    try:
+        data = request.get_json()
+        if not data or 'user_id' not in data:
+            return jsonify({'error': '缺少user_id字段'}), 400
+
+        if 'answers' not in data or not isinstance(data['answers'], list):
+            return jsonify({'error': '缺少answers字段或格式不正确'}), 400
+
+        user_id = data['user_id']
+        answers = data['answers']
+
+        if len(answers) == 0:
+            return jsonify({'error': 'answers不能为空'}), 400
+
+        results = []
+        score_dist = {5: 0, 4: 0, 3: 0, 2: 0, 1: 0}
+        total_score = 0
+        scored_count = 0
+        compensation_events = []
+
+        for ans in answers:
+            question_id = ans.get('question_id', '')
+            node_id = ans.get('node_id')
+            question_text = ans.get('question_text', '')
+            student_answer = ans.get('student_answer', '')
+
+            if node_id is None:
+                results.append({'question_id': question_id, 'error': '缺少node_id'})
+                continue
+
+            node = database.get_node(node_id)
+            node_name = node['name'] if node else f"知识点{node_id}"
+
+            # Snapshot before update
+            mastery_before = database.get_mastery(user_id, node_id)
+
+            try:
+                score, comment = llm_api.evaluate_practice_answer(
+                    node_name, question_text, student_answer
+                )
+            except Exception as e:
+                results.append({
+                    'question_id': question_id, 'node_id': node_id,
+                    'node_name': node_name, 'score': None,
+                    'comment': f'评估失败: {str(e)}',
+                    'mastery_before': round(mastery_before, 2),
+                    'mastery_after': round(mastery_before, 2),
+                })
+                continue
+
+            mastery_value = (score - 1) / 4.0
+            delta = mastery_value - mastery_before
+            new_mastery = database.update_mastery(user_id, node_id, delta=delta)
+
+            score_dist[score] = score_dist.get(score, 0) + 1
+            total_score += score
+            scored_count += 1
+
+            # L1: per-question delta
+            node_info = database.get_node(node_id)
+            compensation_events.append({
+                "level": "L1",
+                "node_id": node_id,
+                "node_name": node_name,
+                "description": f"练习反馈: {node_name} mastery变化 {delta:+.3f}",
+                "delta": round(delta, 3),
+            })
+
+            # L2: threshold crossing
+            for t in [0.5, 0.7]:
+                if mastery_before < t <= new_mastery:
+                    compensation_events.append({
+                        "level": "L2",
+                        "node_id": node_id,
+                        "node_name": node_name,
+                        "description": f"阈值突破: {node_name} mastery 跨越 {t}",
+                        "threshold": t,
+                        "before": round(mastery_before, 3),
+                        "after": round(new_mastery, 3),
+                    })
+
+            # L4: bottleneck breakthrough
+            if mastery_before < 0.3 and new_mastery >= 0.5:
+                compensation_events.append({
+                    "level": "L4",
+                    "node_id": node_id,
+                    "node_name": node_name,
+                    "description": f"瓶颈突破: {node_name} 从薄弱跃升至掌握",
+                    "before": round(mastery_before, 3),
+                    "after": round(new_mastery, 3),
+                })
+
+            results.append({
+                'question_id': question_id, 'node_id': node_id,
+                'node_name': node_name, 'score': score, 'comment': comment,
+                'mastery_before': round(mastery_before, 2),
+                'mastery_after': round(new_mastery, 2),
+            })
+
+        avg_score = round(total_score / scored_count, 1) if scored_count > 0 else 0
+
+        # Update momentum based on average outcome
+        if scored_count > 0:
+            if avg_score >= 4.0:
+                outcome_val = 0.15
+            elif avg_score >= 3.0:
+                outcome_val = 0.05
+            elif avg_score >= 2.0:
+                outcome_val = -0.1
+            else:
+                outcome_val = -0.3
+            new_momentum = database.update_momentum_db(user_id, outcome_val)
+        else:
+            new_momentum = database.get_user_meta(user_id).get('momentum', 0.0)
+
+        response_data = {
+            'results': results,
+            'summary': {
+                'total': len(results),
+                'average_score': avg_score,
+                'score_breakdown': score_dist,
+            },
+            'compensation_events': compensation_events,
+            'momentum': round(new_momentum, 3),
+        }
+
+        # Save practice session
+        try:
+            target_nodes = list(set(a['node_id'] for a in answers if a.get('node_id') is not None))
+            database.save_practice_session(user_id, target_nodes, answers, response_data)
+        except Exception as e:
+            print(f"保存练习记录失败（不影响提交结果）: {e}")
+
+        return jsonify(response_data)
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': f'提交练习答案时出错: {str(e)}'}), 500
+
+
+@app.route('/api/dim-mastery', methods=['GET'])
+def get_dim_mastery():
+    """Returns all dim-level mastery data."""
+    user_id = request.args.get('user_id')
+    if not user_id:
+        return jsonify({'error': 'missing user_id'}), 400
+    dims = database.get_user_dim_mastery_all(user_id)
+    nodes = database.get_user_node_mastery_derived_all(user_id)
+
+    avg_mastery = sum(d['mastery'] for d in dims) / len(dims) if dims else 0.0
+    weak_dims = [d for d in dims if d['mastery'] < 0.5]
+
+    return jsonify({
+        'dimensions': dims,
+        'nodes': nodes,
+        'summary': {
+            'dim_count': len(dims),
+            'node_count': len(nodes),
+            'avg_mastery': round(avg_mastery, 4),
+            'weak_count': len(weak_dims)
+        }
+    })
+
+
+@app.route('/api/problem-for-dim', methods=['GET'])
+def get_problem_for_dim():
+    """Returns a problem for a given dimension."""
+    dim_id = request.args.get('dim_id')
+    if not dim_id:
+        return jsonify({'error': 'missing dim_id'}), 400
+
+    import json as _json
+    import os as _os
+    problems_path = _os.path.join(_os.path.dirname(__file__), 'data', 'problems.json')
+    with open(problems_path, 'r', encoding='utf-8') as f:
+        problems = _json.load(f)
+
+    matching = []
+    for p in problems:
+        for step in p.get('steps', []):
+            if step.get('dim_id') == dim_id:
+                matching.append(p)
+                break
+
+    if not matching:
+        return jsonify({'error': f'No problem found for dim_id: {dim_id}'}), 404
+
+    dim = database.get_dimension(dim_id)
+    dim_name = dim['name'] if dim else dim_id
+
+    matching.sort(key=lambda p: abs(p.get('difficulty', 3) - 2.5))
+    problem = matching[0]
+
+    steps_with_choices = []
+    for step in problem.get('steps', []):
+        correct_text = step.get('text', '')
+        wrong_choices = [ep.get('desc', '') for ep in step.get('error_patterns', [])]
+        choices = [correct_text] + wrong_choices[:3]
+
+        generic_wrong = ['跳过这一步直接算结果', '用其他不相关的方法', '不确定，随便试试']
+        while len(choices) < 4:
+            for g in generic_wrong:
+                if g not in choices and len(choices) < 4:
+                    choices.append(g)
+
+        steps_with_choices.append({
+            'id': step.get('id', ''),
+            'text': step.get('text', ''),
+            'choices': choices,
+            'correct': 0
+        })
+
+    return jsonify({
+        'problem': {
+            'id': problem.get('id', ''),
+            'text': problem.get('text', ''),
+            'steps': steps_with_choices
+        },
+        'dim_id': dim_id,
+        'dim_name': dim_name
+    })
+
+
 if __name__ == '__main__':
     # 在启动应用前初始化数据库
     print("正在初始化数据库...")
     database.init_db()
     database.ensure_practice_sessions_table()
+    database.run_all_migrations()
 
     # 启动Flask应用
     print("启动Flask应用在 http://localhost:5000")

@@ -1,0 +1,35 @@
+.dim-mastery-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dim-mastery-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.dm-name {
+  font-size: 12px;
+  color: #374151;
+  width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.dm-bar-wrap {
+  flex: 1;
+  min-width: 60px;
+}
+
+.dm-pct {
+  font-size: 11px;
+  color: #9ca3af;
+  width: 30px;
+  text-align: right;
+  flex-shrink: 0;
+}

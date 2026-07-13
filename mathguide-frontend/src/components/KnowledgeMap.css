@@ -1,0 +1,26 @@
+.km-container {
+  width: 100%;
+  overflow: auto;
+}
+
+.km-container svg {
+  display: block;
+}
+
+.km-node {
+  transition: opacity 0.2s;
+}
+.km-node:hover {
+  opacity: 0.8;
+}
+
+.km-loading,
+.km-error {
+  font-size: 12px;
+  color: #9ca3af;
+  padding: 12px;
+  text-align: center;
+}
+.km-error {
+  color: #ef4444;
+}

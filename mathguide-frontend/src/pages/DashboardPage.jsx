@@ -1,19 +1,18 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
-import { getRecommendation, diagnoseWeaknesses, resetMastery, resetAll } from '../api/mathguide';
+import { diagnoseWeaknesses, resetMastery, resetAll } from '../api/mathguide';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ErrorBanner from '../components/ErrorBanner';
+import RecommendationPanel from '../components/RecommendationPanel';
+import CognitiveMap from '../components/CognitiveMap';
 import './DashboardPage.css';
 
 const CHAPTER_COLORS = ['#3b82f6', '#8b5cf6', '#10b981'];
 
 export default function DashboardPage() {
   const { userId, nodes, chapters, mastery, setMastery, setInitialized, refreshNodes, reset } = useUser();
-  const navigate = useNavigate();
 
-  const [recommendation, setRecommendation] = useState(null);
   const [weaknesses, setWeaknesses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -28,11 +27,7 @@ export default function DashboardPage() {
     setLoading(true);
     setError(null);
     try {
-      const [recData, weakData] = await Promise.all([
-        getRecommendation(userId, 'auto'),
-        diagnoseWeaknesses(userId),
-      ]);
-      setRecommendation(recData);
+      const weakData = await diagnoseWeaknesses(userId);
       setWeaknesses(weakData.weaknesses || []);
     } catch (err) {
       setError('加载数据失败: ' + err.message);
@@ -197,23 +192,9 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Recommendation */}
-        <div className="dash-card">
-          <h3 className="card-title">学习推荐</h3>
-          {recommendation?.node ? (
-            <div className="recommendation">
-              <span className={`rec-type ${recommendation.recommend_type}`}>
-                {recommendation.recommend_type === 'review' ? '复习' : '新知识'}
-              </span>
-              <p className="rec-node-name">{recommendation.node.name}</p>
-              <p className="rec-message">{recommendation.message}</p>
-              <button className="rec-action-btn" onClick={() => navigate('/practice')}>
-                去练习
-              </button>
-            </div>
-          ) : (
-            <p className="rec-empty">暂无推荐，继续提问以建立学习画像</p>
-          )}
+        {/* Recommendation v2 */}
+        <div className="dash-card dash-card-full">
+          <RecommendationPanel userId={userId} />
         </div>
 
         {/* Weakness summary */}
@@ -289,6 +270,9 @@ export default function DashboardPage() {
           )}
         </div>
       </div>
+
+      {/* Cognitive Map */}
+      <CognitiveMap userId={userId} />
     </div>
   );
 }

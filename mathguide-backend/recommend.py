@@ -98,7 +98,7 @@ def get_prerequisites_for_node(node_id: int) -> List[int]:
 
 def get_weakest_nodes(user_id: str, threshold: float = 0.5, limit: int = 5) -> list:
     """
-    获取用户掌握度最低的知识点列表
+    获取用户掌握度最低的知识点列表（从维度参数衍生）
 
     Args:
         user_id: 用户ID
@@ -130,6 +130,43 @@ def get_weakest_nodes(user_id: str, threshold: float = 0.5, limit: int = 5) -> l
                 "priority": priority
             })
     return result
+
+
+def get_bottleneck_dims(user_id: str, threshold: float = 0.5, limit: int = 5) -> list:
+    """
+    获取用户最薄弱的维度（低掌握度 + 低置信度 = 需要更多练习）
+
+    Args:
+        user_id: 用户ID
+        threshold: 掌握度低于此值视为瓶颈，默认0.5
+        limit: 最多返回数量
+
+    Returns:
+        [{"dim_id": str, "name": str, "mastery": float,
+          "confidence": float, "stuck_count": int, "node_id": int, "node_name": str}, ...]
+        按 (mastery, -confidence) 升序排列
+    """
+    dims = database.get_all_dimensions()
+    candidates = []
+    for dim in dims:
+        dim_id = dim['dim_id']
+        m = database.get_dim_mastery(user_id, dim_id)
+        if m < threshold:
+            conf = database.get_dim_confidence(user_id, dim_id)
+            stuck = database.get_dim_stuck_count(user_id, dim_id)
+            node = database.get_node(dim['parent_node_id'])
+            candidates.append({
+                'dim_id': dim_id,
+                'name': dim['name'],
+                'mastery': round(m, 4),
+                'confidence': round(conf, 2),
+                'stuck_count': stuck,
+                'node_id': dim['parent_node_id'],
+                'node_name': node['name'] if node else '',
+            })
+    # Sort: lowest mastery first, then lowest confidence
+    candidates.sort(key=lambda x: (x['mastery'], x['confidence']))
+    return candidates[:limit]
 
 
 def compute_knowledge_layers() -> Dict[int, int]:

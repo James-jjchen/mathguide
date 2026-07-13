@@ -1,0 +1,192 @@
+.rp-panel {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.rp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.rp-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+
+.rp-refresh-btn {
+  padding: 4px 12px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.rp-refresh-btn:hover {
+  background: #e5e7eb;
+}
+
+.rp-empty {
+  font-size: 13px;
+  color: #9ca3af;
+  text-align: center;
+  margin: 0;
+}
+
+/* Momentum */
+.rp-momentum {
+  margin-bottom: 16px;
+}
+
+.rp-momentum-label {
+  font-size: 12px;
+  color: #6b7280;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.rp-momentum-track {
+  position: relative;
+  height: 20px;
+  background: #f3f4f6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.rp-momentum-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.6s ease;
+}
+
+.rp-momentum-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Cards */
+.rp-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rp-card {
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 14px;
+  transition: box-shadow 0.15s;
+}
+
+.rp-card:hover {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.rp-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.rp-badge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+
+/* Score bar */
+.rp-score-bar-track {
+  position: relative;
+  width: 80px;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: visible;
+}
+
+.rp-score-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.rp-score-label {
+  position: absolute;
+  top: -8px;
+  right: -4px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #6b7280;
+  transform: translateX(100%);
+}
+
+.rp-card-body {
+  margin-bottom: 8px;
+}
+
+.rp-dim-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f2937;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.rp-explanation {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Affected dimensions */
+.rp-affected {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.rp-affected-label {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.rp-dim-tag {
+  font-size: 11px;
+  padding: 1px 8px;
+  background: #f3f4f6;
+  color: #6b7280;
+  border-radius: 8px;
+}
+
+/* Summary row */
+.rp-summary-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #f3f4f6;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.rp-summary-row strong {
+  color: #374151;
+}

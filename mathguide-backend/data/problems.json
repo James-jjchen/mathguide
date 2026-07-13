@@ -1,0 +1,1428 @@
+[
+  {
+    "id": "p01",
+    "text": "求极限: lim_{n→∞} n·(1 - cos(1/n))",
+    "difficulty": 2,
+    "min_prereq_mastery": {
+      "limit_intuitive": 0.5,
+      "infinitesimals": 0.5,
+      "limit_rules": 0.5
+    },
+    "tags": [
+      "极限",
+      "夹逼"
+    ],
+    "steps": [
+      {
+        "id": "p01_s1",
+        "text": "将 n·(1-cos(1/n)) 改写为 (1-cos(1/n))/(1/n), 令 x=1/n",
+        "node_id": "limit_intuitive",
+        "dim_id": "func_limits_intuit",
+        "prerequisite_steps": [],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "fail_form",
+            "desc": "没能将乘积形式改写为分式",
+            "dim_affected": "func_limits_intuit"
+          }
+        ]
+      },
+      {
+        "id": "p01_s2",
+        "text": "使用等价无穷小: 1-cosx ~ x²/2, 得原式 ~ x/2 = 1/(2n)",
+        "node_id": "infinitesimals",
+        "dim_id": "equiv_infinitesimal",
+        "prerequisite_steps": [
+          "p01_s1"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "wrong_equiv",
+            "desc": "不知道或记错了1-cosx的等价形式",
+            "dim_affected": "equiv_infinitesimal"
+          },
+          {
+            "pattern": "order_wrong",
+            "desc": "展开阶数不够，忽略高阶无穷小处理",
+            "dim_affected": "infinitesimal_order"
+          }
+        ]
+      },
+      {
+        "id": "p01_s3",
+        "text": "求极限: lim_{n→∞} 1/(2n) = 0",
+        "node_id": "limit_rules",
+        "dim_id": "limit_basic_ops",
+        "prerequisite_steps": [
+          "p01_s2"
+        ],
+        "difficulty": 1,
+        "novelty": 1,
+        "error_patterns": [
+          {
+            "pattern": "missing_limit",
+            "desc": "不会取极限/忘记n→∞的条件",
+            "dim_affected": "limit_basic_ops"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p02",
+    "text": "求极限: lim_{x→0} (e^x - 1 - x) / x²",
+    "difficulty": 3,
+    "min_prereq_mastery": {
+      "lhopital": 0.5,
+      "infinitesimals": 0.5
+    },
+    "tags": [
+      "极限",
+      "洛必达"
+    ],
+    "steps": [
+      {
+        "id": "p02_s1",
+        "text": "代入 x=0 判断型: 分子→0, 分母→0, 确认是0/0型",
+        "node_id": "lhopital",
+        "dim_id": "lhopital_recognition",
+        "prerequisite_steps": [],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "no_verify",
+            "desc": "没有先验证极限类型就使用洛必达",
+            "dim_affected": "lhopital_recognition"
+          }
+        ]
+      },
+      {
+        "id": "p02_s2",
+        "text": "第一次洛必达: 分子求导得 e^x - 1, 分母求导得 2x",
+        "node_id": "lhopital",
+        "dim_id": "lhopital_multi",
+        "prerequisite_steps": [
+          "p02_s1"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "diff_wrong",
+            "desc": "e^x - 1 - x 求导错误",
+            "dim_affected": "basic_diff_table"
+          }
+        ]
+      },
+      {
+        "id": "p02_s3",
+        "text": "再次代入判断: 仍然是0/0型。第二次洛必达: 分子 e^x, 分母 2",
+        "node_id": "lhopital",
+        "dim_id": "lhopital_multi",
+        "prerequisite_steps": [
+          "p02_s2"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "stop_early",
+            "desc": "一次洛必达后没检查是否仍为0/0型就停了",
+            "dim_affected": "lhopital_multi"
+          }
+        ]
+      },
+      {
+        "id": "p02_s4",
+        "text": "取极限: lim_{x→0} e^x / 2 = 1/2",
+        "node_id": "limit_rules",
+        "dim_id": "limit_basic_ops",
+        "prerequisite_steps": [
+          "p02_s3"
+        ],
+        "difficulty": 1,
+        "novelty": 1,
+        "error_patterns": []
+      }
+    ]
+  },
+  {
+    "id": "p03",
+    "text": "用导数定义求 f(x) = x² 在 x=2 处的导数",
+    "difficulty": 2,
+    "min_prereq_mastery": {
+      "derivative_def": 0.5,
+      "limit_rules": 0.5
+    },
+    "tags": [
+      "导数",
+      "定义"
+    ],
+    "steps": [
+      {
+        "id": "p03_s1",
+        "text": "写出差商: (f(2+h)-f(2))/h = ((2+h)² - 4)/h",
+        "node_id": "derivative_def",
+        "dim_id": "derivative_delta",
+        "prerequisite_steps": [],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "wrong_formula",
+            "desc": "记错了导数定义的差商形式",
+            "dim_affected": "derivative_delta"
+          }
+        ]
+      },
+      {
+        "id": "p03_s2",
+        "text": "展开分子: (4+4h+h²-4)/h = (4h+h²)/h = 4+h",
+        "node_id": "diff_rules",
+        "dim_id": "basic_diff_table",
+        "prerequisite_steps": [
+          "p03_s1"
+        ],
+        "difficulty": 1,
+        "novelty": 1,
+        "error_patterns": [
+          {
+            "pattern": "expand_wrong",
+            "desc": "展开(2+h)²时出错",
+            "dim_affected": "basic_diff_table"
+          }
+        ]
+      },
+      {
+        "id": "p03_s3",
+        "text": "取极限: lim_{h→0} (4+h) = 4",
+        "node_id": "limit_rules",
+        "dim_id": "limit_basic_ops",
+        "prerequisite_steps": [
+          "p03_s2"
+        ],
+        "difficulty": 1,
+        "novelty": 1,
+        "error_patterns": []
+      }
+    ]
+  },
+  {
+    "id": "p04",
+    "text": "求导: y = ln(sin(e^x))",
+    "difficulty": 3,
+    "min_prereq_mastery": {
+      "chain_rule": 0.5,
+      "diff_rules": 0.5,
+      "elementary_functions": 0.5
+    },
+    "tags": [
+      "导数",
+      "链式法则"
+    ],
+    "steps": [
+      {
+        "id": "p04_s1",
+        "text": "从外到内分解: y = ln(u), u = sin(v), v = e^x",
+        "node_id": "chain_rule",
+        "dim_id": "chain_decompose",
+        "prerequisite_steps": [],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "decompose_fail",
+            "desc": "不能正确分解多层复合函数",
+            "dim_affected": "chain_decompose"
+          },
+          {
+            "pattern": "wrong_order",
+            "desc": "分解顺序颠倒(误把外层当内层)",
+            "dim_affected": "compose_basics"
+          }
+        ]
+      },
+      {
+        "id": "p04_s2",
+        "text": "逐层求导: dy/du = 1/u, du/dv = cos(v), dv/dx = e^x",
+        "node_id": "chain_rule",
+        "dim_id": "chain_decompose",
+        "prerequisite_steps": [
+          "p04_s1"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "diff_ln",
+            "desc": "ln求导公式记错",
+            "dim_affected": "basic_diff_table"
+          },
+          {
+            "pattern": "diff_sin",
+            "desc": "sin求导变cos还是-cos记混",
+            "dim_affected": "trig_functions"
+          }
+        ]
+      },
+      {
+        "id": "p04_s3",
+        "text": "链式相乘: dy/dx = 1/sin(e^x) · cos(e^x) · e^x",
+        "node_id": "chain_rule",
+        "dim_id": "chain_decompose",
+        "prerequisite_steps": [
+          "p04_s2"
+        ],
+        "difficulty": 3,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "chain_omit",
+            "desc": "漏乘了某层导数（常见：只乘了两层）",
+            "dim_affected": "chain_decompose"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p05",
+    "text": "已知 y² + 2xy = 1, 求 dy/dx 在 (1, -1) 处的值",
+    "difficulty": 3,
+    "min_prereq_mastery": {
+      "implicit_param": 0.5
+    },
+    "tags": [
+      "导数",
+      "隐函数"
+    ],
+    "steps": [
+      {
+        "id": "p05_s1",
+        "text": "两边对x求导: 2y·y' + 2y + 2x·y' = 0",
+        "node_id": "implicit_param",
+        "dim_id": "implicit_diff",
+        "prerequisite_steps": [],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "prod_miss",
+            "desc": "没把2xy看成乘积形式（忘用乘法法则）",
+            "dim_affected": "implicit_diff"
+          },
+          {
+            "pattern": "y_as_const",
+            "desc": "求导时把y当常数处理了",
+            "dim_affected": "implicit_diff"
+          }
+        ]
+      },
+      {
+        "id": "p05_s2",
+        "text": "整理含 y' 的项: (2y+2x)·y' = -2y",
+        "node_id": "diff_rules",
+        "dim_id": "prod_quo_rule",
+        "prerequisite_steps": [
+          "p05_s1"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": []
+      },
+      {
+        "id": "p05_s3",
+        "text": "解出 y': y' = -2y/(2y+2x) = -y/(y+x)",
+        "node_id": "diff_rules",
+        "dim_id": "basic_diff_table",
+        "prerequisite_steps": [
+          "p05_s2"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": []
+      },
+      {
+        "id": "p05_s4",
+        "text": "代入 (1, -1): y' = -(-1)/((-1)+1) = 1/0, 无定义→检查",
+        "node_id": "implicit_param",
+        "dim_id": "implicit_diff",
+        "prerequisite_steps": [
+          "p05_s3"
+        ],
+        "difficulty": 3,
+        "novelty": 4,
+        "error_patterns": [
+          {
+            "pattern": "no_check",
+            "desc": "代入后分母为零却没意识到不可导",
+            "dim_affected": "implicit_diff"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p06",
+    "text": "证明: 当 a > b > 0 时, (a-b)/a < ln(a/b) < (a-b)/b",
+    "difficulty": 4,
+    "min_prereq_mastery": {
+      "mean_value_theorems": 0.5,
+      "derivative_inequality": 0.5
+    },
+    "tags": [
+      "中值定理",
+      "不等式"
+    ],
+    "steps": [
+      {
+        "id": "p06_s1",
+        "text": "构造函数 f(x)=lnx, 在区间[b,a]上用拉格朗日中值定理",
+        "node_id": "mean_value_theorems",
+        "dim_id": "lagrange_mvt",
+        "prerequisite_steps": [],
+        "difficulty": 4,
+        "novelty": 4,
+        "error_patterns": [
+          {
+            "pattern": "no_func_construct",
+            "desc": "不知道该对哪个函数用中值定理",
+            "dim_affected": "mvt_func_construction"
+          }
+        ]
+      },
+      {
+        "id": "p06_s2",
+        "text": "由中值定理: ln(a)-ln(b) = (a-b)/ξ, 其中 ξ∈(b,a)",
+        "node_id": "mean_value_theorems",
+        "dim_id": "lagrange_mvt",
+        "prerequisite_steps": [
+          "p06_s1"
+        ],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "mv_formula_wrong",
+            "desc": "拉格朗日中值公式写错",
+            "dim_affected": "lagrange_mvt"
+          }
+        ]
+      },
+      {
+        "id": "p06_s3",
+        "text": "由 b < ξ < a, 得 1/a < 1/ξ < 1/b",
+        "node_id": "derivative_inequality",
+        "dim_id": "inequality_construction",
+        "prerequisite_steps": [
+          "p06_s2"
+        ],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "ineq_dir_wrong",
+            "desc": "不等号方向反了(ξ大→1/ξ小)",
+            "dim_affected": "inequality_construction"
+          }
+        ]
+      },
+      {
+        "id": "p06_s4",
+        "text": "代入中值定理的等式: (a-b)/a < ln(a)-ln(b) < (a-b)/b",
+        "node_id": "derivative_inequality",
+        "dim_id": "inequality_construction",
+        "prerequisite_steps": [
+          "p06_s3"
+        ],
+        "difficulty": 3,
+        "novelty": 4,
+        "error_patterns": [
+          {
+            "pattern": "chain_break",
+            "desc": "没把放缩结果与中值定理的等式连接起来",
+            "dim_affected": "inequality_construction"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p07",
+    "text": "求极限: lim_{x→0} (sinx - x) / x³",
+    "difficulty": 3,
+    "min_prereq_mastery": {
+      "taylor_formula": 0.5
+    },
+    "tags": [
+      "极限",
+      "泰勒"
+    ],
+    "steps": [
+      {
+        "id": "p07_s1",
+        "text": "识别为 0/0 型, 考虑用泰勒展开代替洛必达",
+        "node_id": "taylor_formula",
+        "dim_id": "taylor_limit",
+        "prerequisite_steps": [],
+        "difficulty": 2,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "no_strategy",
+            "desc": "不知道什么时候用泰勒比洛必达更方便",
+            "dim_affected": "taylor_limit"
+          }
+        ]
+      },
+      {
+        "id": "p07_s2",
+        "text": "展开 sinx = x - x³/3! + o(x³)",
+        "node_id": "taylor_formula",
+        "dim_id": "taylor_expand",
+        "prerequisite_steps": [
+          "p07_s1"
+        ],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "expand_wrong",
+            "desc": "sinx的泰勒展开项数或符号记错",
+            "dim_affected": "taylor_expand"
+          }
+        ]
+      },
+      {
+        "id": "p07_s3",
+        "text": "代入原式: (x - x³/6 + o(x³) - x) / x³ = (-x³/6 + o(x³)) / x³",
+        "node_id": "taylor_formula",
+        "dim_id": "taylor_limit",
+        "prerequisite_steps": [
+          "p07_s2"
+        ],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "order_insufficient",
+            "desc": "展开阶数不够(没展开到x³项以上)",
+            "dim_affected": "taylor_limit"
+          }
+        ]
+      },
+      {
+        "id": "p07_s4",
+        "text": "取极限: -1/6",
+        "node_id": "limit_rules",
+        "dim_id": "limit_basic_ops",
+        "prerequisite_steps": [
+          "p07_s3"
+        ],
+        "difficulty": 1,
+        "novelty": 1,
+        "error_patterns": []
+      }
+    ]
+  },
+  {
+    "id": "p08",
+    "text": "证明: 当 x > 0 时, e^x > 1 + x",
+    "difficulty": 3,
+    "min_prereq_mastery": {
+      "monotonicity_extrema": 0.5,
+      "derivative_inequality": 0.5
+    },
+    "tags": [
+      "不等式",
+      "导数"
+    ],
+    "steps": [
+      {
+        "id": "p08_s1",
+        "text": "构造辅助函数 f(x) = e^x - 1 - x",
+        "node_id": "derivative_inequality",
+        "dim_id": "inequality_construction",
+        "prerequisite_steps": [],
+        "difficulty": 3,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "no_construction",
+            "desc": "不知道移项构造辅助函数的方法",
+            "dim_affected": "inequality_construction"
+          }
+        ]
+      },
+      {
+        "id": "p08_s2",
+        "text": "求导: f'(x) = e^x - 1",
+        "node_id": "diff_rules",
+        "dim_id": "basic_diff_table",
+        "prerequisite_steps": [
+          "p08_s1"
+        ],
+        "difficulty": 1,
+        "novelty": 1,
+        "error_patterns": []
+      },
+      {
+        "id": "p08_s3",
+        "text": "判断符号: x>0 时 e^x > 1, 所以 f'(x) > 0, f(x) 单调递增",
+        "node_id": "monotonicity_extrema",
+        "dim_id": "monotonic_judge",
+        "prerequisite_steps": [
+          "p08_s2"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "sign_wrong",
+            "desc": "e^x与1比较时误判了符号",
+            "dim_affected": "monotonic_judge"
+          }
+        ]
+      },
+      {
+        "id": "p08_s4",
+        "text": "由 f(0) = 0 且 f 单调增, 得 x>0 时 f(x) > 0 → e^x > 1+x",
+        "node_id": "derivative_inequality",
+        "dim_id": "inequality_construction",
+        "prerequisite_steps": [
+          "p08_s3"
+        ],
+        "difficulty": 3,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "chain_break",
+            "desc": "没把单调性和端点值结合来证明不等式",
+            "dim_affected": "inequality_construction"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p09",
+    "text": "求积分: ∫ x·e^{x²} dx",
+    "difficulty": 2,
+    "min_prereq_mastery": {
+      "substitution_1": 0.5
+    },
+    "tags": [
+      "积分",
+      "换元"
+    ],
+    "steps": [
+      {
+        "id": "p09_s1",
+        "text": "识别复合结构: 内函数 u=x², 其导数 du=2x·dx 在外部(缺系数2)",
+        "node_id": "substitution_1",
+        "dim_id": "u_substitution_detect",
+        "prerequisite_steps": [],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "no_pattern",
+            "desc": "没看出x²的导数2x已经出现在外面",
+            "dim_affected": "u_substitution_detect"
+          }
+        ]
+      },
+      {
+        "id": "p09_s2",
+        "text": "补系数: ∫ x·e^{x²} dx = ½∫ e^{x²}·2x·dx = ½∫ e^u du",
+        "node_id": "substitution_1",
+        "dim_id": "inner_diff_extract",
+        "prerequisite_steps": [
+          "p09_s1"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "coeff_wrong",
+            "desc": "补系数时乘除颠倒了",
+            "dim_affected": "inner_diff_extract"
+          }
+        ]
+      },
+      {
+        "id": "p09_s3",
+        "text": "积分: ½·e^u + C = ½·e^{x²} + C",
+        "node_id": "substitution_1",
+        "dim_id": "inner_diff_extract",
+        "prerequisite_steps": [
+          "p09_s2"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "forget_C",
+            "desc": "忘了加积分常数+C",
+            "dim_affected": "indefinite_concept"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p10",
+    "text": "求积分: ∫ 1/√(1-x²) dx",
+    "difficulty": 3,
+    "min_prereq_mastery": {
+      "substitution_2": 0.5
+    },
+    "tags": [
+      "积分",
+      "三角换元"
+    ],
+    "steps": [
+      {
+        "id": "p10_s1",
+        "text": "识别 √(1-x²) 模式 → 三角替换 x=sint, dx=cost·dt",
+        "node_id": "substitution_2",
+        "dim_id": "trig_substitution",
+        "prerequisite_steps": [],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "wrong_sub",
+            "desc": "选择了错误的换元(如x=tant)",
+            "dim_affected": "trig_substitution"
+          },
+          {
+            "pattern": "no_recognition",
+            "desc": "没认出√(a²-x²)的三角替换模式",
+            "dim_affected": "trig_substitution"
+          }
+        ]
+      },
+      {
+        "id": "p10_s2",
+        "text": "代入: ∫ 1/√(1-sin²t) · cost·dt = ∫ cost/cost·dt = ∫ 1·dt",
+        "node_id": "substitution_2",
+        "dim_id": "trig_substitution",
+        "prerequisite_steps": [
+          "p10_s1"
+        ],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "root_simplify",
+            "desc": "√(1-sin²t)=|cost| 的正负讨论漏了",
+            "dim_affected": "trig_substitution"
+          }
+        ]
+      },
+      {
+        "id": "p10_s3",
+        "text": "积分 = t + C = arcsinx + C",
+        "node_id": "substitution_2",
+        "dim_id": "trig_substitution",
+        "prerequisite_steps": [
+          "p10_s2"
+        ],
+        "difficulty": 2,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "back_sub",
+            "desc": "回代时忘记了arcsinx的由来",
+            "dim_affected": "trig_substitution"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p11",
+    "text": "求积分: ∫ x·lnx dx",
+    "difficulty": 3,
+    "min_prereq_mastery": {
+      "parts_integration": 0.5
+    },
+    "tags": [
+      "积分",
+      "分部积分"
+    ],
+    "steps": [
+      {
+        "id": "p11_s1",
+        "text": "选择 u=lnx, dv=x·dx。理由: lnx求导变简单(→1/x), x的积分也很简单(→x²/2)",
+        "node_id": "parts_integration",
+        "dim_id": "LIATE_choice",
+        "prerequisite_steps": [],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "u_wrong",
+            "desc": "设反了(如u=x, dv=lnx·dx → dv的积分不好求)",
+            "dim_affected": "LIATE_choice"
+          }
+        ]
+      },
+      {
+        "id": "p11_s2",
+        "text": "计算 du = (1/x)·dx, v = x²/2",
+        "node_id": "parts_integration",
+        "dim_id": "LIATE_choice",
+        "prerequisite_steps": [
+          "p11_s1"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "diff_ln",
+            "desc": "lnx求导得1/x还是x，记混了",
+            "dim_affected": "basic_diff_table"
+          }
+        ]
+      },
+      {
+        "id": "p11_s3",
+        "text": "分部公式: uv - ∫v·du = (x²/2)·lnx - ∫(x²/2)·(1/x)·dx = (x²/2)·lnx - ½∫x·dx",
+        "node_id": "parts_integration",
+        "dim_id": "log_inverse_integral",
+        "prerequisite_steps": [
+          "p11_s2"
+        ],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "formula_wrong",
+            "desc": "分部积分公式写颠倒了(不是∫u·dv = uv - ∫v·du)",
+            "dim_affected": "LIATE_choice"
+          }
+        ]
+      },
+      {
+        "id": "p11_s4",
+        "text": "继续积分: (x²/2)·lnx - x²/4 + C",
+        "node_id": "indefinite_concept",
+        "dim_id": "basic_integral_table",
+        "prerequisite_steps": [
+          "p11_s3"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": []
+      }
+    ]
+  },
+  {
+    "id": "p12",
+    "text": "求积分: ∫ e^x·sinx dx",
+    "difficulty": 4,
+    "min_prereq_mastery": {
+      "parts_integration": 0.5
+    },
+    "tags": [
+      "积分",
+      "分部积分"
+    ],
+    "steps": [
+      {
+        "id": "p12_s1",
+        "text": "选 u=sinx, dv=e^x·dx, 则 du=cosx·dx, v=e^x",
+        "node_id": "parts_integration",
+        "dim_id": "LIATE_choice",
+        "prerequisite_steps": [],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "u_wrong",
+            "desc": "e^x和sinx的积分性质相似，选反了不影响结果",
+            "dim_affected": "LIATE_choice"
+          }
+        ]
+      },
+      {
+        "id": "p12_s2",
+        "text": "第一次分部: e^x·sinx - ∫ e^x·cosx dx",
+        "node_id": "parts_integration",
+        "dim_id": "repeated_parts",
+        "prerequisite_steps": [
+          "p12_s1"
+        ],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "sign_error",
+            "desc": "分部公式里的负号遗失了",
+            "dim_affected": "LIATE_choice"
+          }
+        ]
+      },
+      {
+        "id": "p12_s3",
+        "text": "对 ∫ e^x·cosx dx 再次分部: e^x·cosx + ∫ e^x·sinx dx",
+        "node_id": "parts_integration",
+        "dim_id": "repeated_parts",
+        "prerequisite_steps": [
+          "p12_s2"
+        ],
+        "difficulty": 4,
+        "novelty": 4,
+        "error_patterns": [
+          {
+            "pattern": "sign_error_2",
+            "desc": "二次分部的符号处理错误(一正一负容易混)",
+            "dim_affected": "repeated_parts"
+          }
+        ]
+      },
+      {
+        "id": "p12_s4",
+        "text": "两次分部后得到: I = e^x·sinx - e^x·cosx - I, 解方程: I = (e^x·sinx - e^x·cosx)/2 + C",
+        "node_id": "parts_integration",
+        "dim_id": "repeated_parts",
+        "prerequisite_steps": [
+          "p12_s3"
+        ],
+        "difficulty": 4,
+        "novelty": 4,
+        "error_patterns": [
+          {
+            "pattern": "no_cycle",
+            "desc": "没发现原积分再次出现可以列方程解",
+            "dim_affected": "repeated_parts"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p13",
+    "text": "求积分: ∫ (x+1)/(x²-5x+6) dx",
+    "difficulty": 4,
+    "min_prereq_mastery": {
+      "rational_integration": 0.5
+    },
+    "tags": [
+      "积分",
+      "有理函数"
+    ],
+    "steps": [
+      {
+        "id": "p13_s1",
+        "text": "分母因式分解: x²-5x+6=(x-2)(x-3)",
+        "node_id": "rational_integration",
+        "dim_id": "partial_fraction",
+        "prerequisite_steps": [],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "factor_fail",
+            "desc": "二次三项式因式分解错误",
+            "dim_affected": "partial_fraction"
+          }
+        ]
+      },
+      {
+        "id": "p13_s2",
+        "text": "部分分式分解: (x+1)/(x-2)(x-3) = A/(x-2) + B/(x-3)",
+        "node_id": "rational_integration",
+        "dim_id": "partial_fraction",
+        "prerequisite_steps": [
+          "p13_s1"
+        ],
+        "difficulty": 4,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "decomp_form",
+            "desc": "部分分式的设的形式错了",
+            "dim_affected": "partial_fraction"
+          }
+        ]
+      },
+      {
+        "id": "p13_s3",
+        "text": "解出 A=-3, B=4",
+        "node_id": "rational_integration",
+        "dim_id": "partial_fraction",
+        "prerequisite_steps": [
+          "p13_s2"
+        ],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": []
+      },
+      {
+        "id": "p13_s4",
+        "text": "积分: -3ln|x-2| + 4ln|x-3| + C",
+        "node_id": "rational_integration",
+        "dim_id": "rational_standard_forms",
+        "prerequisite_steps": [
+          "p13_s3"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": []
+      }
+    ]
+  },
+  {
+    "id": "p14",
+    "text": "求积分: ∫ sin²x·cos²x dx",
+    "difficulty": 4,
+    "min_prereq_mastery": {
+      "trig_integration": 0.5
+    },
+    "tags": [
+      "积分",
+      "三角函数"
+    ],
+    "steps": [
+      {
+        "id": "p14_s1",
+        "text": "使用倍角公式: sin²x·cos²x = (1-cos2x)/2 · (1+cos2x)/2 = (1-cos²2x)/4",
+        "node_id": "trig_integration",
+        "dim_id": "trig_product_transform",
+        "prerequisite_steps": [],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "formula_wrong",
+            "desc": "倍角公式sin²x或cos²x的公式记错",
+            "dim_affected": "trig_product_transform"
+          }
+        ]
+      },
+      {
+        "id": "p14_s2",
+        "text": "再次用倍角: cos²2x = (1+cos4x)/2, 得原式 = (1-(1+cos4x)/2)/4 = (1-cos4x)/8",
+        "node_id": "trig_integration",
+        "dim_id": "sin_cos_power",
+        "prerequisite_steps": [
+          "p14_s1"
+        ],
+        "difficulty": 4,
+        "novelty": 4,
+        "error_patterns": [
+          {
+            "pattern": "extra_formula",
+            "desc": "对cos²2x忘记再次降幂",
+            "dim_affected": "sin_cos_power"
+          }
+        ]
+      },
+      {
+        "id": "p14_s3",
+        "text": "积分: ∫(1-cos4x)/8 dx = x/8 - sin4x/32 + C",
+        "node_id": "trig_integration",
+        "dim_id": "sin_cos_power",
+        "prerequisite_steps": [
+          "p14_s2"
+        ],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "integrate_cos",
+            "desc": "cos4x积分时忘了除以系数4",
+            "dim_affected": "basic_integral_table"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p15",
+    "text": "求定积分: ∫_{-π}^{π} x·cosx dx",
+    "difficulty": 3,
+    "min_prereq_mastery": {
+      "definite_techniques": 0.5
+    },
+    "tags": [
+      "定积分",
+      "对称性"
+    ],
+    "steps": [
+      {
+        "id": "p15_s1",
+        "text": "判断被积函数奇偶性: f(x)=x·cosx, f(-x)=(-x)·cos(-x)=(-x)·cosx=-f(x), 是奇函数",
+        "node_id": "function_properties",
+        "dim_id": "symmetry_analysis",
+        "prerequisite_steps": [],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "parity_wrong",
+            "desc": "乘积函数奇偶性判断错误(奇×偶=奇)",
+            "dim_affected": "symmetry_analysis"
+          }
+        ]
+      },
+      {
+        "id": "p15_s2",
+        "text": "对称区间上奇函数积分为0, 所以原式 = 0",
+        "node_id": "definite_techniques",
+        "dim_id": "symmetric_integral",
+        "prerequisite_steps": [
+          "p15_s1"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "no_apply",
+            "desc": "知道奇函数性质但没意识到可以直接应用",
+            "dim_affected": "symmetric_integral"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p16",
+    "text": "判断反常积分 ∫₁^∞ 1/x² dx 是否收敛，若收敛求其值",
+    "difficulty": 3,
+    "min_prereq_mastery": {
+      "improper_integral": 0.5,
+      "ftc_newton_leibniz": 0.5
+    },
+    "tags": [
+      "反常积分"
+    ],
+    "steps": [
+      {
+        "id": "p16_s1",
+        "text": "改写为极限形式: ∫₁^∞ 1/x² dx = lim_{b→∞} ∫₁^b 1/x² dx",
+        "node_id": "improper_integral",
+        "dim_id": "infinite_limit_improper",
+        "prerequisite_steps": [],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "no_limit_form",
+            "desc": "不知道反常积分需要写成极限形式",
+            "dim_affected": "infinite_limit_improper"
+          }
+        ]
+      },
+      {
+        "id": "p16_s2",
+        "text": "求不定积分: ∫ 1/x² dx = -1/x",
+        "node_id": "indefinite_concept",
+        "dim_id": "basic_integral_table",
+        "prerequisite_steps": [
+          "p16_s1"
+        ],
+        "difficulty": 1,
+        "novelty": 1,
+        "error_patterns": []
+      },
+      {
+        "id": "p16_s3",
+        "text": "代入上下限: lim_{b→∞} (-1/b + 1) = 1, 收敛",
+        "node_id": "improper_integral",
+        "dim_id": "infinite_limit_improper",
+        "prerequisite_steps": [
+          "p16_s2"
+        ],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "limit_wrong",
+            "desc": "对无穷极限的处理错误",
+            "dim_affected": "infinite_limit_improper"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p17",
+    "text": "求 y=x² 在 [0,1] 上绕 x 轴旋转所得旋转体体积",
+    "difficulty": 3,
+    "min_prereq_mastery": {
+      "integral_geo_application": 0.5
+    },
+    "tags": [
+      "定积分",
+      "体积"
+    ],
+    "steps": [
+      {
+        "id": "p17_s1",
+        "text": "判别类型: 绕x轴旋转, 用盘法(圆盘法)公式: π∫[f(x)]²dx",
+        "node_id": "integral_geo_application",
+        "dim_id": "volume_calc",
+        "prerequisite_steps": [],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "method_wrong",
+            "desc": "绕x轴旋转用了壳法(应该在绕y轴时用壳法)",
+            "dim_affected": "volume_calc"
+          }
+        ]
+      },
+      {
+        "id": "p17_s2",
+        "text": "代入: V = π∫₀¹ (x²)² dx = π∫₀¹ x⁴ dx",
+        "node_id": "integral_geo_application",
+        "dim_id": "volume_calc",
+        "prerequisite_steps": [
+          "p17_s1"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": []
+      },
+      {
+        "id": "p17_s3",
+        "text": "积分: π·[x⁵/5]₀¹ = π/5",
+        "node_id": "definite_techniques",
+        "dim_id": "ftc_application",
+        "prerequisite_steps": [
+          "p17_s2"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": []
+      }
+    ]
+  },
+  {
+    "id": "p18",
+    "text": "证明方程 x³ - 3x + 1 = 0 在 (0,1) 内至少有一个实根",
+    "difficulty": 3,
+    "min_prereq_mastery": {
+      "mean_value_theorems": 0.5,
+      "continuous_properties": 0.5
+    },
+    "tags": [
+      "中值定理"
+    ],
+    "steps": [
+      {
+        "id": "p18_s1",
+        "text": "设 f(x)=x³-3x+1, 先检查连续性: f 是多项式, 在闭区间[0,1]连续",
+        "node_id": "continuity",
+        "dim_id": "continuity_judge",
+        "prerequisite_steps": [],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "no_check_cont",
+            "desc": "直接用零点定理但没先验证连续性",
+            "dim_affected": "continuity_judge"
+          }
+        ]
+      },
+      {
+        "id": "p18_s2",
+        "text": "计算端点值: f(0)=1>0, f(1)=-1<0",
+        "node_id": "continuous_properties",
+        "dim_id": "intermediate_value",
+        "prerequisite_steps": [
+          "p18_s1"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": []
+      },
+      {
+        "id": "p18_s3",
+        "text": "由零点定理: f(0)和f(1)异号, 至少存在 ξ∈(0,1) 使得 f(ξ)=0",
+        "node_id": "continuous_properties",
+        "dim_id": "intermediate_value",
+        "prerequisite_steps": [
+          "p18_s2"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "theorem_wrong",
+            "desc": "零点定理的条件(闭区间连续+端点异号)写不全",
+            "dim_affected": "intermediate_value"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "p19",
+    "text": "求极限: lim_{x→0} (tanx - x) / x³",
+    "difficulty": 4,
+    "min_prereq_mastery": {
+      "lhopital": 0.5,
+      "infinitesimals": 0.5,
+      "taylor_formula": 0.5
+    },
+    "tags": [
+      "极限",
+      "策略"
+    ],
+    "steps": [
+      {
+        "id": "p19_s1",
+        "text": "判断型: 0/0型。可选方法: 洛必达、泰勒展开、等价无穷小",
+        "node_id": "lhopital",
+        "dim_id": "lhopital_recognition",
+        "prerequisite_steps": [],
+        "difficulty": 2,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "no_strategy",
+            "desc": "没有意识到有多种方法可选",
+            "dim_affected": "lhopital_recognition"
+          }
+        ]
+      },
+      {
+        "id": "p19_s2",
+        "text": "尝试行得通的方法: 展开 tanx = x + x³/3 + 2x⁵/15 + o(x⁵)",
+        "node_id": "taylor_formula",
+        "dim_id": "taylor_limit",
+        "prerequisite_steps": [
+          "p19_s1"
+        ],
+        "difficulty": 4,
+        "novelty": 4,
+        "error_patterns": [
+          {
+            "pattern": "expand_insufficient",
+            "desc": "tanx展开错了或展开阶数不够(x³以上)",
+            "dim_affected": "taylor_expand"
+          }
+        ]
+      },
+      {
+        "id": "p19_s3",
+        "text": "代入原式: (x + x³/3 + o(x³) - x) / x³ = (x³/3 + o(x³)) / x³",
+        "node_id": "taylor_formula",
+        "dim_id": "taylor_limit",
+        "prerequisite_steps": [
+          "p19_s2"
+        ],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": []
+      },
+      {
+        "id": "p19_s4",
+        "text": "取极限: 1/3",
+        "node_id": "limit_rules",
+        "dim_id": "limit_basic_ops",
+        "prerequisite_steps": [
+          "p19_s3"
+        ],
+        "difficulty": 1,
+        "novelty": 1,
+        "error_patterns": []
+      }
+    ]
+  },
+  {
+    "id": "p20",
+    "text": "求积分: ∫ x²·e^x dx",
+    "difficulty": 4,
+    "min_prereq_mastery": {
+      "parts_integration": 0.5
+    },
+    "tags": [
+      "积分",
+      "综合"
+    ],
+    "steps": [
+      {
+        "id": "p20_s1",
+        "text": "选 u=x², dv=e^x·dx (LIATE: 代数函数先于指数函数作为u)",
+        "node_id": "parts_integration",
+        "dim_id": "LIATE_choice",
+        "prerequisite_steps": [],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "u_wrong",
+            "desc": "选了u=e^x导致u求导后变得更复杂",
+            "dim_affected": "LIATE_choice"
+          }
+        ]
+      },
+      {
+        "id": "p20_s2",
+        "text": "第一次分部: du=2x·dx, v=e^x → x²·e^x - ∫2x·e^x dx",
+        "node_id": "parts_integration",
+        "dim_id": "log_inverse_integral",
+        "prerequisite_steps": [
+          "p20_s1"
+        ],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": []
+      },
+      {
+        "id": "p20_s3",
+        "text": "对 ∫2x·e^x dx 再次分部: u=2x, dv=e^x·dx → 2x·e^x - ∫2·e^x dx",
+        "node_id": "parts_integration",
+        "dim_id": "repeated_parts",
+        "prerequisite_steps": [
+          "p20_s2"
+        ],
+        "difficulty": 3,
+        "novelty": 3,
+        "error_patterns": [
+          {
+            "pattern": "stop_early",
+            "desc": "一次分部后还剩可分的积分就停了",
+            "dim_affected": "repeated_parts"
+          }
+        ]
+      },
+      {
+        "id": "p20_s4",
+        "text": "最终结果: x²·e^x - 2x·e^x + 2e^x + C",
+        "node_id": "parts_integration",
+        "dim_id": "repeated_parts",
+        "prerequisite_steps": [
+          "p20_s3"
+        ],
+        "difficulty": 2,
+        "novelty": 2,
+        "error_patterns": [
+          {
+            "pattern": "sign_accum",
+            "desc": "多次分部的符号累加错误",
+            "dim_affected": "repeated_parts"
+          },
+          {
+            "pattern": "forget_C",
+            "desc": "忘了加积分常数",
+            "dim_affected": "indefinite_concept"
+          }
+        ]
+      }
+    ]
+  }
+]

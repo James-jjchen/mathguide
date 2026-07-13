@@ -126,6 +126,13 @@ export async function getRecommendation(userId, strategy = 'auto') {
   });
 }
 
+export async function getRecommendV2(userId) {
+  return request(`${BASE}/recommend-v2`, {
+    method: 'POST',
+    body: JSON.stringify({ user_id: userId }),
+  });
+}
+
 export async function getMastery(userId) {
   return request(`${BASE}/mastery?user_id=${encodeURIComponent(userId)}`);
 }
@@ -157,6 +164,13 @@ export async function generatePractice(userId, nodeIds = null, count = 3) {
 
 export async function submitPractice(userId, answers) {
   return request(`${BASE}/submit-practice`, {
+    method: 'POST',
+    body: JSON.stringify({ user_id: userId, answers }),
+  });
+}
+
+export async function submitPracticeV2(userId, answers) {
+  return request(`${BASE}/submit-practice-v2`, {
     method: 'POST',
     body: JSON.stringify({ user_id: userId, answers }),
   });
@@ -200,4 +214,12 @@ export async function deleteAdminUser(userId, token) {
     method: 'DELETE',
     headers: { Authorization: `Bearer ${token}` },
   });
+}
+
+export async function getDimMastery(userId) {
+  return request(`${BASE}/dim-mastery?user_id=${encodeURIComponent(userId)}`);
+}
+
+export async function getProblemForDim(dimId) {
+  return request(`${BASE}/problem-for-dim?dim_id=${encodeURIComponent(dimId)}`);
 }

@@ -109,7 +109,8 @@
   padding: 20px;
 }
 
-.dash-card.chart-card {
+.dash-card.chart-card,
+.dash-card.dash-card-full {
   grid-column: span 2;
 }
 
